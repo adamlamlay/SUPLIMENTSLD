@@ -598,9 +598,6 @@ async function finalizeOrder() {
     const img = new Image();
     img.src = submitUrl;
 
-    // Method 2: fetch as backup, fires in parallel
-    fetch(submitUrl, { method: 'GET', mode: 'no-cors' }).catch(() => {});
-
     // Wait for the request to actually fire
     await new Promise(resolve => setTimeout(resolve, 1500));
   } catch (err) {
