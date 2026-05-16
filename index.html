@@ -1,32 +1,32 @@
 <!-- ============================================================
-     FACEBOOK REVIEWS SLIDER FIXED
+     FACEBOOK REVIEWS SLIDER — AUTO SIZE FIXED
 ============================================================ -->
 <section class="fb-reviews-section" id="reviews">
 
 <style>
-/* =========================================
-   FACEBOOK REVIEWS SLIDER FIXED
-========================================= */
+/* ============================================================
+   FACEBOOK REVIEWS SLIDER — PERFECT AUTO SIZE
+============================================================ */
 
 .fb-reviews-section{
   background:linear-gradient(180deg,#faf4ec 0%,#f5edde 100%);
-  padding:72px 0;
+  padding:80px 0;
   overflow:hidden;
 }
 
 .fb-reviews-head{
   text-align:center;
-  max-width:720px;
-  margin:0 auto 42px;
+  max-width:760px;
+  margin:0 auto 46px;
 }
 
 .fb-reviews-head h2{
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
 
 .fb-reviews-head p{
-  color:#4a3f44;
   font-size:1rem;
+  color:#4a3f44;
 }
 
 .fb-reviews-head .rose{
@@ -39,19 +39,19 @@
   gap:10px;
   background:#1877F2;
   color:#fff;
-  padding:8px 18px;
+  padding:9px 18px;
   border-radius:999px;
-  font-size:.85rem;
+  font-size:.84rem;
   font-weight:700;
   margin-bottom:18px;
 }
 
-/* WRAP */
+/* WRAPPER */
 .fb-slider-wrap{
   position:relative;
-  max-width:1240px;
+  max-width:1280px;
   margin:0 auto;
-  padding:0 65px;
+  padding:0 70px;
 }
 
 /* VIEWPORT */
@@ -63,9 +63,9 @@
 /* TRACK */
 .fb-slider-track{
   display:flex;
+  align-items:flex-start;
   gap:24px;
   transition:transform .45s cubic-bezier(.4,0,.2,1);
-  align-items:stretch;
 }
 
 /* CARD */
@@ -73,24 +73,26 @@
   flex:0 0 calc((100% - 48px) / 3);
   background:#fff;
   border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-  display:flex;
-  flex-direction:column;
+  box-shadow:0 10px 32px rgba(0,0,0,.08);
+  overflow:visible;
 }
 
-/* IMAGE AREA */
+/* IMAGE WRAP */
 .fb-slide-image{
   width:100%;
-  background:#f5f5f5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
 }
 
-/* IMAGE */
+/* IMPORTANT — AUTO SIZE */
 .fb-slide-image img{
   width:100%;
   height:auto;
   display:block;
   object-fit:contain;
+  border-radius:18px 18px 0 0;
 }
 
 /* CAPTION */
@@ -98,9 +100,10 @@
   padding:16px;
   text-align:center;
   font-size:.82rem;
-  background:#faf4ec;
-  border-top:1px solid #eee;
   color:#7b6e72;
+  background:#faf4ec;
+  border-top:1px solid #ece2d8;
+  border-radius:0 0 18px 18px;
 }
 
 .fb-slide-caption strong{
@@ -112,8 +115,8 @@
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  width:48px;
-  height:48px;
+  width:52px;
+  height:52px;
   border-radius:50%;
   border:none;
   background:#fff;
@@ -122,7 +125,7 @@
   justify-content:center;
   cursor:pointer;
   z-index:10;
-  box-shadow:0 4px 14px rgba(0,0,0,.12);
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
   transition:.25s ease;
 }
 
@@ -149,15 +152,15 @@
   display:flex;
   justify-content:center;
   gap:8px;
-  margin-top:26px;
+  margin-top:28px;
 }
 
 .fb-dot{
   width:9px;
   height:9px;
-  border-radius:999px;
   border:none;
-  background:#d8cfc4;
+  border-radius:999px;
+  background:#d7cec3;
   cursor:pointer;
   transition:.25s ease;
 }
@@ -175,7 +178,7 @@
   }
 
   .fb-slider-wrap{
-    padding:0 55px;
+    padding:0 56px;
   }
 
 }
@@ -211,23 +214,28 @@
     </h2>
 
     <p>
-      Avaliações reais partilhadas por clientes Toplux
+      Avaliações reais partilhadas pelas clientes Toplux
     </p>
 
   </div>
 
+  <!-- SLIDER -->
   <div class="fb-slider-wrap">
 
+    <!-- PREV -->
     <button class="fb-arrow prev" id="fb-prev">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <polyline points="15 18 9 12 15 6"/>
       </svg>
     </button>
 
+    <!-- VIEWPORT -->
     <div class="fb-slider-viewport">
 
+      <!-- TRACK -->
       <div class="fb-slider-track" id="fb-track">
 
+        <!-- SLIDE -->
         <div class="fb-slide">
           <div class="fb-slide-image">
             <img src="images/image-slider01.webp" alt="">
@@ -237,6 +245,7 @@
           </div>
         </div>
 
+        <!-- SLIDE -->
         <div class="fb-slide">
           <div class="fb-slide-image">
             <img src="images/image-slider02.webp" alt="">
@@ -246,6 +255,7 @@
           </div>
         </div>
 
+        <!-- SLIDE -->
         <div class="fb-slide">
           <div class="fb-slide-image">
             <img src="images/image-slider03.webp" alt="">
@@ -255,6 +265,7 @@
           </div>
         </div>
 
+        <!-- SLIDE -->
         <div class="fb-slide">
           <div class="fb-slide-image">
             <img src="images/image-slider04.webp" alt="">
@@ -264,6 +275,7 @@
           </div>
         </div>
 
+        <!-- SLIDE -->
         <div class="fb-slide">
           <div class="fb-slide-image">
             <img src="images/image-slider05.webp" alt="">
@@ -273,6 +285,7 @@
           </div>
         </div>
 
+        <!-- SLIDE -->
         <div class="fb-slide">
           <div class="fb-slide-image">
             <img src="images/image-slider06.webp" alt="">
@@ -283,9 +296,9 @@
         </div>
 
       </div>
-
     </div>
 
+    <!-- NEXT -->
     <button class="fb-arrow next" id="fb-next">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <polyline points="9 18 15 12 9 6"/>
@@ -294,6 +307,7 @@
 
   </div>
 
+  <!-- DOTS -->
   <div class="fb-dots" id="fb-dots"></div>
 
 </div>
@@ -307,6 +321,7 @@ const fbDots = document.getElementById('fb-dots');
 
 let fbIndex = 0;
 
+/* RESPONSIVE */
 function getSlidesPerView(){
 
   if(window.innerWidth < 600) return 1;
@@ -316,11 +331,13 @@ function getSlidesPerView(){
   return 3;
 }
 
+/* MAX INDEX */
 function getMaxIndex(){
 
   return fbSlides.length - getSlidesPerView();
 }
 
+/* UPDATE */
 function updateFbSlider(){
 
   const gap = 24;
@@ -359,6 +376,7 @@ function updateFbSlider(){
     fbIndex >= getMaxIndex();
 }
 
+/* PREV */
 fbPrev.addEventListener('click', () => {
 
   if(fbIndex > 0){
@@ -370,6 +388,7 @@ fbPrev.addEventListener('click', () => {
 
 });
 
+/* NEXT */
 fbNext.addEventListener('click', () => {
 
   if(fbIndex < getMaxIndex()){
@@ -381,6 +400,7 @@ fbNext.addEventListener('click', () => {
 
 });
 
+/* RESIZE */
 window.addEventListener('resize', () => {
 
   fbIndex = 0;
@@ -404,7 +424,7 @@ let autoSlide = setInterval(() => {
 
 }, 4500);
 
-/* PAUSE HOVER */
+/* PAUSE ON HOVER */
 document.querySelector('.fb-slider-wrap')
 .addEventListener('mouseenter', () => {
 
@@ -412,6 +432,7 @@ document.querySelector('.fb-slider-wrap')
 
 });
 
+/* RESTART */
 document.querySelector('.fb-slider-wrap')
 .addEventListener('mouseleave', () => {
 
@@ -432,6 +453,7 @@ document.querySelector('.fb-slider-wrap')
 
 });
 
+/* INIT */
 updateFbSlider();
 </script>
 
