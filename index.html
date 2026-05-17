@@ -216,7 +216,7 @@ p { color: var(--c-ink-soft); }
 ============================================================ */
 .fb-reviews-section{
   background:linear-gradient(180deg,var(--c-cream) 0%,var(--c-bg-warm) 100%);
-  padding:72px 0;
+  padding:56px 0;
   border-top:1px solid var(--c-border);
   overflow:hidden;
 }
@@ -255,17 +255,17 @@ p { color: var(--c-ink-soft); }
   width:100%;
 }
 .fb-slider-track{
-  display:flex;
-  align-items:flex-start;
-  gap:24px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  grid-template-rows:auto auto;
+  gap:16px;
   transition:transform .45s cubic-bezier(.4,0,.2,1);
 }
 .fb-slide{
-  flex:0 0 calc((100% - 48px) / 3);
   background:#fff;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  border-radius:14px;
+  overflow:visible;
+  box-shadow:0 6px 20px rgba(0,0,0,.07);
   display:flex;
   flex-direction:column;
 }
@@ -351,17 +351,23 @@ p { color: var(--c-ink-soft); }
 }
 /* tablet */
 @media(max-width:900px){
-  .fb-slide{
-    flex:0 0 calc((100% - 24px) / 2);
+  .fb-slider-track{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
   }
 }
 /* mobile */
 @media(max-width:600px){
-  .fb-slide{
-    flex:0 0 100%;
+  .fb-slider-track{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
   }
   .fb-slider-wrap{
-    padding:0 40px;
+    padding:0 16px;
+  }
+  .fb-slide-caption{
+    padding:8px 10px;
+    font-size:.7rem;
   }
 }
 
@@ -373,7 +379,7 @@ p { color: var(--c-ink-soft); }
 .trust-pill .pill-num { display: block; font-size: 1.6rem; color: var(--c-gold-light); margin-bottom: 2px; font-weight: 800; }
 
 /* EDGE */
-.edge-section { background: var(--c-cream); padding: 88px 0; }
+.edge-section { background: var(--c-cream); padding: 64px 0; }
 .edge-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 64px; align-items: center; }
 @media (max-width: 900px) { .edge-grid { grid-template-columns: 1fr; gap: 40px; } }
 .edge-left h2 { margin-bottom: 18px; }
@@ -387,7 +393,7 @@ p { color: var(--c-ink-soft); }
 .edge-feat p { font-size: 0.85rem; color: var(--c-ink-soft); line-height: 1.55; }
 
 /* INGREDIENT SECTION */
-.ingredient-section { background: var(--c-white); padding: 88px 0; }
+.ingredient-section { background: var(--c-white); padding: 64px 0; }
 .ingredient-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 72px; align-items: center; }
 @media (max-width: 900px) { .ingredient-grid { grid-template-columns: 1fr; gap: 40px; } }
 .supp-facts { background: var(--c-white); border: 2px solid var(--c-ink); padding: 24px; font-family: var(--f-body); }
@@ -410,7 +416,7 @@ p { color: var(--c-ink-soft); }
 .allergen-badge .ab-label { font-family: var(--f-display); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--c-ink); }
 
 /* BENEFITS */
-.benefits-section { background: var(--c-bg-warm); padding: 88px 0; }
+.benefits-section { background: var(--c-bg-warm); padding: 64px 0; }
 .benefits-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
 @media (max-width: 900px) { .benefits-grid { grid-template-columns: 1fr; gap: 40px; } }
 .benefits-left h2 { margin-bottom: 36px; line-height: 0.95; }
@@ -424,8 +430,8 @@ p { color: var(--c-ink-soft); }
 .benefits-image img { width: 100%; height: 100%; object-fit: cover; }
 
 /* BEFORE AFTER */
-.beforeafter { background: var(--c-cream); padding: 88px 0; }
-.section-head { text-align: center; max-width: 720px; margin: 0 auto 48px; }
+.beforeafter { background: var(--c-cream); padding: 64px 0; }
+.section-head { text-align: center; max-width: 720px; margin: 0 auto 32px; }
 .section-head h2 { margin-bottom: 14px; }
 .section-head h2 .rose { color: var(--c-rose); }
 .section-head .lede { font-size: 1.05rem; line-height: 1.7; }
@@ -486,7 +492,7 @@ p { color: var(--c-ink-soft); }
 .stack-card .btn-small { font-size: 0.78rem; padding: 10px 22px; }
 
 /* FAQ */
-.faq-section { background: var(--c-cream); padding: 88px 0; }
+.faq-section { background: var(--c-cream); padding: 64px 0; }
 .faq-list { max-width: 820px; margin: 0 auto; }
 .faq-item { background: var(--c-white); border-radius: var(--r-sm); margin-bottom: 12px; overflow: hidden; box-shadow: var(--shadow-sm); }
 .faq-q { padding: 22px 26px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 1rem; color: var(--c-ink); gap: 14px; letter-spacing: 0.01em; }
@@ -496,7 +502,7 @@ p { color: var(--c-ink-soft); }
 .faq-item.open .faq-a { max-height: 500px; padding: 0 26px 22px; }
 
 /* ORDER FORM */
-.order-section { background: var(--c-white); padding: 88px 0; }
+.order-section { background: var(--c-white); padding: 64px 0; }
 .order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; max-width: 1100px; margin: 0 auto; }
 @media (max-width: 920px) { .order-grid { grid-template-columns: 1fr; gap: 36px; } }
 .order-summary { background: var(--c-cream); padding: 32px; border-radius: var(--r-md); box-shadow: var(--shadow-sm); position: sticky; top: 130px; align-self: start; }
@@ -555,41 +561,94 @@ p { color: var(--c-ink-soft); }
 .hero-fullwidth-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 48px 24px 36px; background: linear-gradient(to top, rgba(31,26,30,0.65) 0%, rgba(31,26,30,0.25) 60%, transparent 100%); display: flex; justify-content: center; }
 .hero-fullwidth-overlay .btn { font-size: 1rem; padding: 20px 48px; box-shadow: 0 8px 32px rgba(181,72,92,0.4); animation: heroPulse 2.5s ease-in-out infinite; }
 @keyframes heroPulse { 0%,100%{ transform: scale(1); } 50%{ transform: scale(1.04); } }
-@media (max-width: 600px) { .hero-fullwidth-overlay { padding: 24px 16px 20px; } .hero-fullwidth-overlay .btn { padding: 16px 32px; font-size: 0.88rem; } }
+@media (max-width: 600px) {
+  .hero-fullwidth { display: flex; flex-direction: column; }
+  .hero-fullwidth img { position: relative; }
+  .hero-fullwidth-overlay { position: relative; background: var(--c-rose); padding: 18px 16px; }
+  .hero-fullwidth-overlay .btn { width: 100%; padding: 18px 24px; font-size: 0.92rem; box-shadow: none; background: var(--c-white); color: var(--c-rose); font-weight: 800; }
+  .hero-fullwidth-overlay .btn:hover { background: var(--c-cream); }
+}
 
-/* PRICING SECTION */
-.pricing-section { background: var(--c-bg-warm); padding: 88px 0; }
-.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 56px; }
-@media (max-width: 800px) { .products-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; margin-bottom: 40px; } }
-.product-card { background: var(--c-white); border-radius: var(--r-md); padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm); transition: transform 0.3s, box-shadow 0.3s; border: 2px solid transparent; cursor: pointer; position: relative; }
-.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-.product-card.selected { border-color: var(--c-rose); box-shadow: var(--shadow-lg); }
-.product-card-img { aspect-ratio: 1; background: var(--c-cream); border-radius: var(--r-sm); margin-bottom: 20px; overflow: hidden; }
+/* PRICING SECTION — Horizontal Row Layout */
+.pricing-section { background: var(--c-bg-warm); padding: 64px 0; }
+.products-grid { display: flex; flex-direction: column; gap: 14px; max-width: 700px; margin: 0 auto 32px; }
+.product-card { background: var(--c-white); border-radius: var(--r-md); padding: 20px 24px; text-align: left; box-shadow: var(--shadow-sm); transition: all 0.25s ease; border: 2px solid var(--c-border); cursor: pointer; position: relative; display: grid; grid-template-columns: 70px 1fr auto; gap: 18px; align-items: center; }
+.product-card:hover { border-color: var(--c-rose-light); box-shadow: var(--shadow-md); }
+.product-card.selected { border-color: var(--c-rose); background: var(--c-blush-soft); box-shadow: var(--shadow-md); }
+.product-card-img { width: 70px; height: 70px; background: var(--c-cream); border-radius: var(--r-sm); overflow: hidden; flex-shrink: 0; }
 .product-card-img img { width: 100%; height: 100%; object-fit: cover; }
-.product-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
-.product-card p { font-size: 0.88rem; line-height: 1.55; margin-bottom: 20px; min-height: 60px; }
-.product-price { font-family: var(--f-display); font-size: 2.2rem; font-weight: 800; color: var(--c-rose); margin-bottom: 20px; }
-.product-card .btn { width: 100%; }
+.product-card-info { min-width: 0; }
+.product-card h3 { font-size: 1.15rem; margin-bottom: 4px; }
+.product-card p { font-size: 0.82rem; line-height: 1.4; color: var(--c-muted); margin: 0; min-height: 0; }
+.product-card .eyebrow { display: none; }
+.product-card .btn { display: none; }
+.product-price { font-family: var(--f-display); font-size: 1.5rem; font-weight: 800; color: var(--c-rose); white-space: nowrap; text-align: right; margin: 0; }
+@media (max-width: 480px) { .product-card { grid-template-columns: 56px 1fr auto; gap: 12px; padding: 16px 14px; } .product-card-img { width: 56px; height: 56px; } .product-card h3 { font-size: 1rem; } .product-price { font-size: 1.25rem; } }
 
 /* BUNDLE OFFER */
-.bundle-offer { background: var(--c-white); border-radius: var(--r-md); box-shadow: var(--shadow-lg); overflow: hidden; position: relative; border: 3px solid var(--c-rose); }
-.bundle-offer-badge { background: var(--c-rose); color: var(--c-white); text-align: center; padding: 14px 20px; font-family: var(--f-display); font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.08em; }
-.bundle-offer-inner { display: grid; grid-template-columns: auto 1fr; gap: 40px; padding: 40px; align-items: center; }
-@media (max-width: 800px) { .bundle-offer-inner { grid-template-columns: 1fr; gap: 28px; padding: 28px 20px; } }
-.bundle-offer-images { display: flex; gap: 8px; justify-content: center; }
-.bundle-offer-images img { width: 100px; height: 100px; object-fit: cover; border-radius: var(--r-sm); border: 2px solid var(--c-cream-deep); }
-@media (max-width: 600px) { .bundle-offer-images img { width: 80px; height: 80px; } }
-.bundle-offer-content h3 { font-size: 1.6rem; margin-bottom: 8px; }
-.bundle-offer-content > p { font-size: 0.95rem; margin-bottom: 16px; }
-.bundle-pricing { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
-.bundle-pricing .old-price { font-family: var(--f-display); font-size: 1.4rem; color: var(--c-muted); text-decoration: line-through; font-weight: 600; }
-.bundle-pricing .new-price { font-family: var(--f-display); font-size: 3rem; font-weight: 800; color: var(--c-rose); line-height: 1; }
-.bundle-save { font-size: 0.92rem; color: var(--c-success); font-weight: 700; margin-bottom: 22px; }
+.bundle-offer { background: var(--c-white); border-radius: var(--r-md); box-shadow: var(--shadow-lg); overflow: hidden; position: relative; border: 3px solid var(--c-rose); max-width: 700px; margin: 0 auto; cursor: pointer; transition: all 0.25s ease; }
+.bundle-offer:hover { box-shadow: 0 16px 48px rgba(181,72,92,0.18); }
+.bundle-offer.selected { background: var(--c-blush-soft); }
+.bundle-offer-badge { background: var(--c-rose); color: var(--c-white); text-align: center; padding: 12px 20px; font-family: var(--f-display); font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.bundle-offer-inner { display: grid; grid-template-columns: auto 1fr; gap: 28px; padding: 24px 28px; align-items: center; }
+@media (max-width: 600px) { .bundle-offer-inner { grid-template-columns: 1fr; gap: 16px; padding: 20px 16px; } }
+.bundle-offer-images { display: flex; gap: 6px; justify-content: center; }
+.bundle-offer-images img { width: 70px; height: 70px; object-fit: cover; border-radius: var(--r-sm); border: 2px solid var(--c-cream-deep); }
+@media (max-width: 480px) { .bundle-offer-images img { width: 56px; height: 56px; } }
+.bundle-offer-content h3 { font-size: 1.3rem; margin-bottom: 6px; }
+.bundle-offer-content > p { font-size: 0.88rem; margin-bottom: 12px; color: var(--c-ink-soft); }
+.bundle-pricing { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.bundle-pricing .old-price { font-family: var(--f-display); font-size: 1.2rem; color: var(--c-muted); text-decoration: line-through; font-weight: 600; }
+.bundle-pricing .new-price { font-family: var(--f-display); font-size: 2.2rem; font-weight: 800; color: var(--c-rose); line-height: 1; }
+.bundle-save { font-size: 0.85rem; color: var(--c-success); font-weight: 700; margin-bottom: 16px; }
 .bundle-offer-content .btn { width: 100%; max-width: 400px; }
 
 /* SCROLL REVEAL */
-.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* SUBTLE ANIMATIONS */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+.anim-fade { animation: fadeInUp 0.7s ease both; }
+.anim-left { animation: slideInLeft 0.6s ease both; }
+.anim-right { animation: slideInRight 0.6s ease both; }
+
+/* MOBILE COMPRESS */
+@media (max-width: 600px) {
+  .section { padding: 48px 0; }
+  .edge-section { padding: 48px 0; }
+  .ingredient-section { padding: 48px 0; }
+  .benefits-section { padding: 48px 0; }
+  .beforeafter { padding: 48px 0; }
+  .pricing-section { padding: 48px 0; }
+  .faq-section { padding: 48px 0; }
+  .order-section { padding: 48px 0; }
+  .fb-reviews-section { padding: 40px 0; }
+  .fb-reviews-head { margin: 0 auto 24px; }
+  .fb-reviews-head h2 { font-size: 1.6rem; margin-bottom: 8px; }
+  .section-head { margin: 0 auto 20px; }
+  .section-head h2 { font-size: 1.6rem; }
+  .section-head .lede { font-size: 0.92rem; }
+  .trust-strip { padding: 18px 0; }
+  .trust-pill { font-size: 0.78rem; }
+  .trust-pill .pill-num { font-size: 1.3rem; }
+  .container { padding: 0 16px; }
+  .edge-grid { gap: 28px; }
+  .edge-features { gap: 12px; margin-top: 24px; }
+  .edge-feat { padding: 16px; }
+  .benefits-grid { gap: 28px; }
+  .benefit-item { gap: 14px; padding: 18px 0; }
+  .benefit-num { font-size: 2.2rem; width: 44px; }
+  .ba-timeline { gap: 10px; }
+  .ingredient-grid { gap: 28px; }
+  .faq-item { margin-bottom: 8px; }
+  .faq-q { padding: 16px 18px; font-size: 0.88rem; }
+  .order-grid { gap: 24px; }
+  .footer { padding: 40px 0 20px; }
+  .footer-grid { gap: 24px; margin-bottom: 28px; }
+}
 </style>
 </head>
 <body>
@@ -601,7 +660,7 @@ p { color: var(--c-ink-soft); }
 <header class="header">
   <div class="container header-inner">
     <a href="#top" class="brand-logo">
-      <img src="images/image-logo.png" alt="Toplux Nutrition" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block';">
+      <img src="images/image-logo.webp" alt="Toplux Nutrition" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block';">
       <span class="fallback-text" style="display:none;">TOPLUX<span style="color:var(--c-rose);">.</span></span>
     </a>
     <nav>
@@ -656,12 +715,12 @@ p { color: var(--c-ink-soft); }
 
       <div class="fb-slider-viewport">
         <div class="fb-slider-track" id="fb-track">
-          <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider01.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
-          <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider02.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
-          <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider03.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
-          <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider04.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
-          <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider05.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
           <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider06.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
+          <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider05.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
+          <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider04.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
+          <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider03.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
+          <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider02.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
+          <div class="fb-slide"><div class="fb-slide-image"><img src="images/image-slider01.webp" alt="Avaliação Facebook"></div><div class="fb-slide-caption">Partilhado no <strong>Facebook</strong></div></div>
         </div>
       </div>
 
@@ -769,27 +828,27 @@ p { color: var(--c-ink-soft); }
     <div class="products-grid">
       <div class="product-card" onclick="selectProduct('COL-1')">
         <div class="product-card-img"><img src="images/image-11.webp" alt="Colagénio Peptídeos"></div>
-        <span class="eyebrow">Beleza · Estrutura</span>
-        <h3>Colagénio Peptídeos</h3>
-        <p>5 tipos de colagénio (I, II, III, V, X) para pele, cabelo, unhas e articulações. 1800mg por dose.</p>
+        <div class="product-card-info">
+          <h3>Colagénio Peptídeos</h3>
+          <p>Pele, cabelo, unhas e articulações</p>
+        </div>
         <div class="product-price">€29.99</div>
-        <button class="btn btn-outline btn-large">Encomendar →</button>
       </div>
       <div class="product-card" onclick="selectProduct('CORTI-1')">
         <div class="product-card-img"><img src="images/image-12.webp" alt="Corti-Soothe"></div>
-        <span class="eyebrow">Stress · Sono</span>
-        <h3>Corti-Soothe</h3>
-        <p>Magnésio + Ashwagandha + L-Teanina. 13 em 1 para relaxamento, sono e gestão do stress.</p>
+        <div class="product-card-info">
+          <h3>Corti-Soothe</h3>
+          <p>Stress, sono e relaxamento</p>
+        </div>
         <div class="product-price">€29.99</div>
-        <button class="btn btn-outline btn-large">Encomendar →</button>
       </div>
       <div class="product-card" onclick="selectProduct('INOSITOL-1')">
         <div class="product-card-img"><img src="images/image-13.webp" alt="Myo-Inositol"></div>
-        <span class="eyebrow">Equilíbrio · Bem-Estar</span>
-        <h3>Myo-Inositol + D3 K2</h3>
-        <p>16 em 1 com D-Chiro Inositol, Berberina, D3 e K2. Apoia o metabolismo e bem-estar feminino.</p>
+        <div class="product-card-info">
+          <h3>Myo-Inositol + D3 K2</h3>
+          <p>Equilíbrio e bem-estar feminino</p>
+        </div>
         <div class="product-price">€29.99</div>
-        <button class="btn btn-outline btn-large">Encomendar →</button>
       </div>
     </div>
     <div class="bundle-offer" onclick="selectProduct('PACK-MULHER')">
@@ -962,7 +1021,7 @@ p { color: var(--c-ink-soft); }
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="images/image-logo.png" alt="Toplux" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <img src="images/image-logo.webp" alt="Toplux" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
         <div class="ft-fallback" style="display:none;">TOPLUX<span>.</span></div>
         <p>Suplementos premium para o bem-estar feminino. Fórmulas concentradas, ingredientes selecionados, entrega em todo o Portugal continental.</p>
       </div>
@@ -1037,63 +1096,71 @@ function updateSummaryThumbs() {
 
 function toggleFaq(el) { el.classList.toggle('open'); }
 
-// ============ FACEBOOK REVIEWS SLIDER ============
+// ============ FACEBOOK REVIEWS — 2×2 GRID PAGINATION ============
 const fbTrack = document.getElementById('fb-track');
 const fbPrev = document.getElementById('fb-prev');
 const fbNext = document.getElementById('fb-next');
 const fbDots = document.getElementById('fb-dots');
-const fbSlides = document.querySelectorAll('.fb-slide');
-let fbIndex = 0;
+const fbSlides = Array.from(document.querySelectorAll('.fb-slide'));
+let fbPage = 0;
 
-function getSlidesPerView() {
-  if (window.innerWidth < 600) return 1;
-  if (window.innerWidth < 900) return 2;
-  return 3;
+function getPerPage() {
+  return window.innerWidth < 600 ? 2 : 4; // 2x1 on mobile, 2x2 on desktop
 }
 
-function getMaxIndex() {
-  return Math.max(0, fbSlides.length - getSlidesPerView());
+function getTotalPages() {
+  return Math.ceil(fbSlides.length / getPerPage());
 }
 
-function updateFbSlider() {
-  const slidesPerView = getSlidesPerView();
-  const slideWidth = fbSlides[0].getBoundingClientRect().width;
-  const gap = 20;
-  const offset = fbIndex * (slideWidth + gap);
-  fbTrack.style.transform = `translateX(-${offset}px)`;
+function updateFbGrid() {
+  const perPage = getPerPage();
+  const totalPages = getTotalPages();
+  fbPage = Math.min(fbPage, totalPages - 1);
+
+  // Show/hide slides for current page
+  fbSlides.forEach((slide, i) => {
+    const pageStart = fbPage * perPage;
+    const pageEnd = pageStart + perPage;
+    if (i >= pageStart && i < pageEnd) {
+      slide.style.display = 'flex';
+      slide.style.animation = 'fadeInUp 0.5s ease both';
+      slide.style.animationDelay = ((i - pageStart) * 0.1) + 's';
+    } else {
+      slide.style.display = 'none';
+    }
+  });
 
   // Update dots
-  const dotCount = Math.ceil(fbSlides.length / slidesPerView);
   fbDots.innerHTML = '';
-  for (let i = 0; i < dotCount; i++) {
+  for (let i = 0; i < totalPages; i++) {
     const dot = document.createElement('button');
-    dot.className = 'fb-dot' + (Math.floor(fbIndex / 1) === i ? ' active' : '');
-    if (i === Math.min(fbIndex, dotCount - 1)) dot.classList.add('active');
-    dot.onclick = () => { fbIndex = Math.min(i, getMaxIndex()); updateFbSlider(); };
+    dot.className = 'fb-dot' + (i === fbPage ? ' active' : '');
+    dot.onclick = () => { fbPage = i; updateFbGrid(); };
     fbDots.appendChild(dot);
   }
 
   // Update arrows
-  fbPrev.disabled = fbIndex === 0;
-  fbNext.disabled = fbIndex >= getMaxIndex();
+  fbPrev.style.display = totalPages <= 1 ? 'none' : 'flex';
+  fbNext.style.display = totalPages <= 1 ? 'none' : 'flex';
+  fbPrev.disabled = fbPage === 0;
+  fbNext.disabled = fbPage >= totalPages - 1;
 }
 
-fbPrev.addEventListener('click', () => { if (fbIndex > 0) { fbIndex--; updateFbSlider(); } });
-fbNext.addEventListener('click', () => { if (fbIndex < getMaxIndex()) { fbIndex++; updateFbSlider(); } });
-window.addEventListener('resize', () => { fbIndex = Math.min(fbIndex, getMaxIndex()); updateFbSlider(); });
+fbPrev.addEventListener('click', () => { if (fbPage > 0) { fbPage--; updateFbGrid(); } });
+fbNext.addEventListener('click', () => { if (fbPage < getTotalPages() - 1) { fbPage++; updateFbGrid(); } });
+window.addEventListener('resize', () => updateFbGrid());
 
-// Auto-advance
+// Auto-advance pages
 let fbAutoTimer = setInterval(() => {
-  if (fbIndex < getMaxIndex()) fbIndex++;
-  else fbIndex = 0;
-  updateFbSlider();
-}, 5000);
+  if (fbPage < getTotalPages() - 1) fbPage++;
+  else fbPage = 0;
+  updateFbGrid();
+}, 6000);
 
-// Pause auto on hover
 document.querySelector('.fb-slider-wrap').addEventListener('mouseenter', () => clearInterval(fbAutoTimer));
 
 // Initialize
-setTimeout(updateFbSlider, 100);
+setTimeout(updateFbGrid, 100);
 
 // ============ ORDER SUBMISSION ============
 async function submitOrder(e) {
