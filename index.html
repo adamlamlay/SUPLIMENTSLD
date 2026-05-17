@@ -1188,7 +1188,12 @@ async function submitOrder(e) {
     zip_code: formData.get('zip_code') || '',
     note: formData.get('note') || ''
   };
-  document.getElementById('oto-modal').classList.add('active');
+  // Skip OTO for bundle — it already includes all 3 products
+  if (currentPackage.sku === 'PACK-MULHER') {
+    await finalizeOrder();
+  } else {
+    document.getElementById('oto-modal').classList.add('active');
+  }
   btn.disabled = false;
   btn.textContent = 'Confirmar Encomenda';
 }
@@ -1207,8 +1212,7 @@ async function finalizeOrder() {
   try {
     const params = new URLSearchParams(window.pendingOrder).toString();
     const submitUrl = SHEET_URL + '?' + params;
-    const img = new Image();
-    img.src = submitUrl;
+    // Single fetch — no duplicate request
     fetch(submitUrl, { method: 'GET', mode: 'no-cors' }).catch(() => {});
     await new Promise(resolve => setTimeout(resolve, 1500));
   } catch (err) { console.error(err); }
