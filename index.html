@@ -548,6 +548,48 @@ p { color: var(--c-ink-soft); }
 .footer-col a { text-decoration: none; }
 .footer-col a:hover { color: var(--c-rose-light); }
 .footer-legal { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; font-size: 0.72rem; color: rgba(250, 244, 236, 0.5); text-align: center; line-height: 1.65; }
+
+/* FULLWIDTH HERO */
+.hero-fullwidth { position: relative; width: 100%; overflow: hidden; }
+.hero-fullwidth img { width: 100%; height: auto; display: block; }
+.hero-fullwidth-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 48px 24px 36px; background: linear-gradient(to top, rgba(31,26,30,0.65) 0%, rgba(31,26,30,0.25) 60%, transparent 100%); display: flex; justify-content: center; }
+.hero-fullwidth-overlay .btn { font-size: 1rem; padding: 20px 48px; box-shadow: 0 8px 32px rgba(181,72,92,0.4); animation: heroPulse 2.5s ease-in-out infinite; }
+@keyframes heroPulse { 0%,100%{ transform: scale(1); } 50%{ transform: scale(1.04); } }
+@media (max-width: 600px) { .hero-fullwidth-overlay { padding: 24px 16px 20px; } .hero-fullwidth-overlay .btn { padding: 16px 32px; font-size: 0.88rem; } }
+
+/* PRICING SECTION */
+.pricing-section { background: var(--c-bg-warm); padding: 88px 0; }
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 56px; }
+@media (max-width: 800px) { .products-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; margin-bottom: 40px; } }
+.product-card { background: var(--c-white); border-radius: var(--r-md); padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm); transition: transform 0.3s, box-shadow 0.3s; border: 2px solid transparent; cursor: pointer; position: relative; }
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.product-card.selected { border-color: var(--c-rose); box-shadow: var(--shadow-lg); }
+.product-card-img { aspect-ratio: 1; background: var(--c-cream); border-radius: var(--r-sm); margin-bottom: 20px; overflow: hidden; }
+.product-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.product-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.product-card p { font-size: 0.88rem; line-height: 1.55; margin-bottom: 20px; min-height: 60px; }
+.product-price { font-family: var(--f-display); font-size: 2.2rem; font-weight: 800; color: var(--c-rose); margin-bottom: 20px; }
+.product-card .btn { width: 100%; }
+
+/* BUNDLE OFFER */
+.bundle-offer { background: var(--c-white); border-radius: var(--r-md); box-shadow: var(--shadow-lg); overflow: hidden; position: relative; border: 3px solid var(--c-rose); }
+.bundle-offer-badge { background: var(--c-rose); color: var(--c-white); text-align: center; padding: 14px 20px; font-family: var(--f-display); font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.bundle-offer-inner { display: grid; grid-template-columns: auto 1fr; gap: 40px; padding: 40px; align-items: center; }
+@media (max-width: 800px) { .bundle-offer-inner { grid-template-columns: 1fr; gap: 28px; padding: 28px 20px; } }
+.bundle-offer-images { display: flex; gap: 8px; justify-content: center; }
+.bundle-offer-images img { width: 100px; height: 100px; object-fit: cover; border-radius: var(--r-sm); border: 2px solid var(--c-cream-deep); }
+@media (max-width: 600px) { .bundle-offer-images img { width: 80px; height: 80px; } }
+.bundle-offer-content h3 { font-size: 1.6rem; margin-bottom: 8px; }
+.bundle-offer-content > p { font-size: 0.95rem; margin-bottom: 16px; }
+.bundle-pricing { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
+.bundle-pricing .old-price { font-family: var(--f-display); font-size: 1.4rem; color: var(--c-muted); text-decoration: line-through; font-weight: 600; }
+.bundle-pricing .new-price { font-family: var(--f-display); font-size: 3rem; font-weight: 800; color: var(--c-rose); line-height: 1; }
+.bundle-save { font-size: 0.92rem; color: var(--c-success); font-weight: 700; margin-bottom: 22px; }
+.bundle-offer-content .btn { width: 100%; max-width: 400px; }
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
@@ -564,11 +606,11 @@ p { color: var(--c-ink-soft); }
     </a>
     <nav>
       <ul class="nav" id="main-nav">
-        <li><a href="#pricing">Preços</a></li>
-        <li><a href="#features">Características</a></li>
-        <li><a href="#bundle">Bundle</a></li>
         <li><a href="#reviews">Avaliações</a></li>
+        <li><a href="#features">Características</a></li>
+        <li><a href="#pricing">Produtos</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="#order">Encomendar</a></li>
       </ul>
     </nav>
     <div class="header-cta"><a href="#order" class="btn btn-rose">Encomendar</a></div>
@@ -578,119 +620,24 @@ p { color: var(--c-ink-soft); }
   </div>
 </header>
 
-<section class="hero" id="top">
-  <div class="container">
-    <div class="hero-grid">
-
-      <div>
-        <span class="eyebrow">Fórmula Profissional · 1800mg</span>
-        <h1 class="hero-headline">UM INGREDIENTE,<br><span class="accent">TODOS</span> OS<br><span class="accent-gold">BENEFÍCIOS</span>.</h1>
-
-        <div class="hero-benefits">
-          <div class="hero-benefit">
-            <span class="b-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.8 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg></span>
-            <span>Apoia <strong>pele, cabelo, unhas</strong> e bem-estar</span>
-          </div>
-          <div class="hero-benefit">
-            <span class="b-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
-            <span>Suporta <strong>articulações e ossos</strong></span>
-          </div>
-          <div class="hero-benefit">
-            <span class="b-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-            <span>Recuperação e <strong>energia diária</strong></span>
-          </div>
-        </div>
-
-        <p style="font-size: 1.05rem; line-height: 1.7; max-width: 480px;">5 tipos de colagénio (I, II, III, V, X) numa fórmula concentrada — para mulheres que cuidam da sua pele, cabelo, unhas e articulações. 1800mg por dose diária.</p>
-      </div>
-
-      <div class="hero-product">
-        <h3 class="hero-product-title">Colagénio Peptídeos</h3>
-        <div class="hero-rating">
-          <span class="stars">★ ★ ★ ★ ★</span>
-          <span>Avaliações da nossa comunidade</span>
-        </div>
-
-        <div class="hero-image-wrap">
-          <img id="main-image" src="images/image-01.webp" alt="Toplux Colagénio Peptídeos 1800mg">
-        </div>
-
-        <div class="hero-thumbs">
-          <div class="thumb active" onclick="changeImage(this, 'images/image-01.webp')"><img src="images/image-01.webp" alt=""></div>
-          <div class="thumb" onclick="changeImage(this, 'images/image-02.webp')"><img src="images/image-02.webp" alt=""></div>
-          <div class="thumb" onclick="changeImage(this, 'images/image-03.webp')"><img src="images/image-03.webp" alt=""></div>
-          <div class="thumb" onclick="changeImage(this, 'images/image-04.webp')"><img src="images/image-04.webp" alt=""></div>
-          <div class="thumb" onclick="changeImage(this, 'images/image-21.webp')"><img src="images/image-21.webp" alt=""></div>
-        </div>
-
-        <div class="hero-price-block" id="pricing">
-          <div class="hero-price-label">Escolha a Sua Opção</div>
-          <div class="price-options">
-
-            <div class="price-option" data-sku="COL-1" data-price="29.90" data-qty="1" data-label="1 Frasco Colagénio" onclick="selectPackage(this)">
-              <div class="radio"></div>
-              <div class="option-thumb-wrap">
-                <img src="images/image-11.webp" alt="Colagénio">
-              </div>
-              <div class="option-info"><div class="option-label">1 Frasco</div><div class="option-meta">30 dias de tratamento</div></div>
-              <div class="option-price-block"><div class="price">€29.90</div></div>
-            </div>
-
-            <div class="price-option selected" data-sku="COL-2" data-price="49.90" data-qty="2" data-label="2 Frascos Colagénio" onclick="selectPackage(this)">
-              <span class="badge-tag">Mais Popular</span>
-              <div class="radio"></div>
-              <div class="option-thumb-wrap qty-2">
-                <img src="images/image-11.webp" alt="">
-                <img src="images/image-11.webp" alt="">
-              </div>
-              <div class="option-info"><div class="option-label">2 Frascos</div><div class="option-meta">60 dias · Poupe €9.90</div></div>
-              <div class="option-price-block"><div class="old">€59.80</div><div class="price">€49.90</div></div>
-            </div>
-
-            <div class="price-option" data-sku="COL-3" data-price="69.90" data-qty="3" data-label="3 Frascos Colagénio" onclick="selectPackage(this)">
-              <span class="badge-tag dark">Melhor Valor</span>
-              <div class="radio"></div>
-              <div class="option-thumb-wrap qty-3">
-                <img src="images/image-11.webp" alt="">
-                <img src="images/image-11.webp" alt="">
-                <img src="images/image-11.webp" alt="">
-              </div>
-              <div class="option-info"><div class="option-label">3 Frascos</div><div class="option-meta">90 dias · Poupe €19.80</div></div>
-              <div class="option-price-block"><div class="old">€89.70</div><div class="price">€69.90</div></div>
-            </div>
-
-            <div class="price-option" data-sku="PACK-MULHER" data-price="84.90" data-qty="1" data-label="Pack Mulher Completa" onclick="selectPackage(this)">
-              <span class="badge-tag gold">Pack Completo</span>
-              <div class="radio"></div>
-              <div class="option-thumb-wrap bundle">
-                <img src="images/image-02.webp" alt="Pack Mulher Completa">
-              </div>
-              <div class="option-info"><div class="option-label">Pack Mulher Completa</div><div class="option-meta">Colagénio + Corti-Soothe + Inositol</div></div>
-              <div class="option-price-block"><div class="old">€129.70</div><div class="price">€84.90</div></div>
-            </div>
-          </div>
-        </div>
-
-        <label class="order-bump">
-          <input type="checkbox" id="bump-checkbox" onchange="updateSummary()">
-          <div class="order-bump-text">
-            <strong>+ Adicionar Corti-Soothe por €17.90</strong><br>
-            Magnésio + Ashwagandha + L-Teanina · Apoia o sono e a gestão do stress.
-          </div>
-        </label>
-
-        <button type="button" class="btn-add-cart" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Adicionar ao Carrinho →</button>
-        <div class="hero-shipping">✓ Portes grátis · ✓ Pagamento na entrega · ✓ Devolução 14 dias</div>
-      </div>
-
-    </div>
+<section class="hero-fullwidth" id="top">
+  <img src="images/image_slide_hero.webp" alt="Toplux Nutrition — 3 Produtos Premium para o Bem-Estar Feminino">
+  <div class="hero-fullwidth-overlay">
+    <a href="#pricing" class="btn btn-rose btn-large">Encomendar Agora →</a>
   </div>
 </section>
 
-<!-- ============================================================
-     FACEBOOK REVIEWS SLIDER (NEW SECTION)
-     User-uploaded images at images/review-01.webp through review-06.webp
-     ============================================================ -->
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="container trust-row">
+    <div class="trust-pill"><span class="pill-num">5</span>Tipos de Colagénio</div>
+    <div class="trust-pill"><span class="pill-num">1800mg</span>Por Dose</div>
+    <div class="trust-pill"><span class="pill-num">90</span>Cápsulas / Frasco</div>
+    <div class="trust-pill"><span class="pill-num">UE</span>Produção Certificada</div>
+  </div>
+</div>
+
 <section class="fb-reviews-section" id="reviews">
   <div class="container">
     <div class="fb-reviews-head">
@@ -727,15 +674,52 @@ p { color: var(--c-ink-soft); }
   </div>
 </section>
 
-<!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="container trust-row">
-    <div class="trust-pill"><span class="pill-num">5</span>Tipos de Colagénio</div>
-    <div class="trust-pill"><span class="pill-num">1800mg</span>Por Dose</div>
-    <div class="trust-pill"><span class="pill-num">90</span>Cápsulas / Frasco</div>
-    <div class="trust-pill"><span class="pill-num">UE</span>Produção Certificada</div>
+
+<!-- BENEFITS -->
+<section class="benefits-section">
+  <div class="container">
+    <div class="benefits-grid">
+      <div class="benefits-left">
+        <span class="eyebrow">Benefícios</span>
+        <h2>BENEFÍCIOS DO<br>COLAGÉNIO <span class="rose">PEPTÍDEOS</span></h2>
+        <div class="benefit-item">
+          <div class="benefit-num">1</div>
+          <div><h4>Revitaliza Pele, Cabelo e Unhas</h4><p>O colagénio é a proteína estrutural que mantém a firmeza da pele, a força do cabelo e a resistência das unhas. A suplementação diária ajuda a repor o que o corpo deixa de produzir após os 25 anos.</p></div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-num">2</div>
+          <div><h4>Apoia as Articulações</h4><p>Estudos sobre peptídeos de colagénio sugerem benefícios no conforto articular e na mobilidade. O colagénio Tipo II é especialmente importante para a cartilagem.</p></div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-num">3</div>
+          <div><h4>Recuperação e Energia</h4><p>Aminoácidos essenciais para o corpo manter os tecidos conectivos saudáveis — pele, ossos, vasos sanguíneos. A base do bem-estar diário.</p></div>
+        </div>
+      </div>
+      <div class="benefits-image"><img src="images/image-04.webp" alt="Mulher a tomar Toplux"></div>
+    </div>
   </div>
-</div>
+</section>
+
+
+<!-- BEFORE/AFTER -->
+<section class="beforeafter">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">A Jornada</span>
+      <h2>O QUE ESPERAR<br>EM <span class="rose">8 A 12 SEMANAS</span></h2>
+      <p class="lede">Os resultados aparecem gradualmente. Consistência é o segredo.</p>
+    </div>
+    <div class="ba-image"><img src="images/image-20.webp" alt="Antes e depois"></div>
+    <div class="ba-labels"><div class="ba-label">Antes</div><div class="ba-label">Depois — 12 semanas</div></div>
+    <div class="ba-timeline">
+      <div class="ba-week"><div class="w-num">4</div><div class="w-label">Sem · primeiros sinais</div></div>
+      <div class="ba-week"><div class="w-num">8</div><div class="w-label">Sem · pele mais firme</div></div>
+      <div class="ba-week"><div class="w-num">12</div><div class="w-label">Sem · resultados visíveis</div></div>
+    </div>
+    <p class="ba-disclaimer">* Resultados individuais variam. As imagens são ilustrativas. A suplementação com colagénio funciona melhor combinada com hidratação, sono adequado e alimentação equilibrada. Não substitui cuidados médicos.</p>
+  </div>
+</section>
+
 
 <!-- THE TOPLUX EDGE -->
 <section class="edge-section" id="features">
@@ -774,6 +758,64 @@ p { color: var(--c-ink-soft); }
   </div>
 </section>
 
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Os Nossos Produtos</span>
+      <h2>ESCOLHA O SEU <span class="rose">RITUAL</span></h2>
+      <p class="lede">Cada produto foi formulado para atuar numa área essencial do bem-estar feminino.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card" onclick="selectProduct('COL-1')">
+        <div class="product-card-img"><img src="images/image-11.webp" alt="Colagénio Peptídeos"></div>
+        <span class="eyebrow">Beleza · Estrutura</span>
+        <h3>Colagénio Peptídeos</h3>
+        <p>5 tipos de colagénio (I, II, III, V, X) para pele, cabelo, unhas e articulações. 1800mg por dose.</p>
+        <div class="product-price">€29.99</div>
+        <button class="btn btn-outline btn-large">Encomendar →</button>
+      </div>
+      <div class="product-card" onclick="selectProduct('CORTI-1')">
+        <div class="product-card-img"><img src="images/image-12.webp" alt="Corti-Soothe"></div>
+        <span class="eyebrow">Stress · Sono</span>
+        <h3>Corti-Soothe</h3>
+        <p>Magnésio + Ashwagandha + L-Teanina. 13 em 1 para relaxamento, sono e gestão do stress.</p>
+        <div class="product-price">€29.99</div>
+        <button class="btn btn-outline btn-large">Encomendar →</button>
+      </div>
+      <div class="product-card" onclick="selectProduct('INOSITOL-1')">
+        <div class="product-card-img"><img src="images/image-13.webp" alt="Myo-Inositol"></div>
+        <span class="eyebrow">Equilíbrio · Bem-Estar</span>
+        <h3>Myo-Inositol + D3 K2</h3>
+        <p>16 em 1 com D-Chiro Inositol, Berberina, D3 e K2. Apoia o metabolismo e bem-estar feminino.</p>
+        <div class="product-price">€29.99</div>
+        <button class="btn btn-outline btn-large">Encomendar →</button>
+      </div>
+    </div>
+    <div class="bundle-offer" onclick="selectProduct('PACK-MULHER')">
+      <div class="bundle-offer-badge">🔥 MELHOR OFERTA — POUPE €29.98</div>
+      <div class="bundle-offer-inner">
+        <div class="bundle-offer-images">
+          <img src="images/image-11.webp" alt="Colagénio">
+          <img src="images/image-12.webp" alt="Corti-Soothe">
+          <img src="images/image-13.webp" alt="Myo-Inositol">
+        </div>
+        <div class="bundle-offer-content">
+          <h3>PACK MULHER COMPLETA</h3>
+          <p>Os 3 produtos juntos — Colagénio + Corti-Soothe + Myo-Inositol</p>
+          <div class="bundle-pricing">
+            <span class="old-price">€89.97</span>
+            <span class="new-price">€59.99</span>
+          </div>
+          <p class="bundle-save">✓ Poupa €29.98 ao comprar em pack</p>
+          <button class="btn btn-rose btn-large">Quero o Pack Completo →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- INGREDIENTS -->
 <section class="ingredient-section">
   <div class="container">
@@ -805,145 +847,6 @@ p { color: var(--c-ink-soft); }
           <div class="allergen-badge"><div class="ab-icon">✓</div><div class="ab-label">Sem Soja</div></div>
           <div class="allergen-badge"><div class="ab-icon">✓</div><div class="ab-label">Sem OGM</div></div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BENEFITS -->
-<section class="benefits-section">
-  <div class="container">
-    <div class="benefits-grid">
-      <div class="benefits-left">
-        <span class="eyebrow">Benefícios</span>
-        <h2>BENEFÍCIOS DO<br>COLAGÉNIO <span class="rose">PEPTÍDEOS</span></h2>
-        <div class="benefit-item">
-          <div class="benefit-num">1</div>
-          <div><h4>Revitaliza Pele, Cabelo e Unhas</h4><p>O colagénio é a proteína estrutural que mantém a firmeza da pele, a força do cabelo e a resistência das unhas. A suplementação diária ajuda a repor o que o corpo deixa de produzir após os 25 anos.</p></div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-num">2</div>
-          <div><h4>Apoia as Articulações</h4><p>Estudos sobre peptídeos de colagénio sugerem benefícios no conforto articular e na mobilidade. O colagénio Tipo II é especialmente importante para a cartilagem.</p></div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-num">3</div>
-          <div><h4>Recuperação e Energia</h4><p>Aminoácidos essenciais para o corpo manter os tecidos conectivos saudáveis — pele, ossos, vasos sanguíneos. A base do bem-estar diário.</p></div>
-        </div>
-      </div>
-      <div class="benefits-image"><img src="images/image-04.webp" alt="Mulher a tomar Toplux"></div>
-    </div>
-  </div>
-</section>
-
-<!-- BEFORE/AFTER -->
-<section class="beforeafter">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">A Jornada</span>
-      <h2>O QUE ESPERAR<br>EM <span class="rose">8 A 12 SEMANAS</span></h2>
-      <p class="lede">Os resultados aparecem gradualmente. Consistência é o segredo.</p>
-    </div>
-    <div class="ba-image"><img src="images/image-20.webp" alt="Antes e depois"></div>
-    <div class="ba-labels"><div class="ba-label">Antes</div><div class="ba-label">Depois — 12 semanas</div></div>
-    <div class="ba-timeline">
-      <div class="ba-week"><div class="w-num">4</div><div class="w-label">Sem · primeiros sinais</div></div>
-      <div class="ba-week"><div class="w-num">8</div><div class="w-label">Sem · pele mais firme</div></div>
-      <div class="ba-week"><div class="w-num">12</div><div class="w-label">Sem · resultados visíveis</div></div>
-    </div>
-    <p class="ba-disclaimer">* Resultados individuais variam. As imagens são ilustrativas. A suplementação com colagénio funciona melhor combinada com hidratação, sono adequado e alimentação equilibrada. Não substitui cuidados médicos.</p>
-  </div>
-</section>
-
-<!-- COMPARE -->
-<section class="compare-section" id="bundle">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Faça as Contas</span>
-      <h2>COMPRE <span class="rose">SEPARADAMENTE</span><br>OU POUPE COM O PACK</h2>
-      <p class="lede">Comparação honesta entre comprar cada produto individualmente vs. o Pack Mulher Completa.</p>
-    </div>
-    <div class="compare-card">
-      <div class="compare-title">Se Comprar Separadamente</div>
-      <div class="compare-line"><span class="name">Colagénio Peptídeos 1800mg</span><span class="price">€29.90</span></div>
-      <div class="compare-line"><span class="name">Corti-Soothe</span><span class="price">€34.90</span></div>
-      <div class="compare-line"><span class="name">Myo-Inositol + D3 K2</span><span class="price">€34.90</span></div>
-      <div class="compare-line total"><span class="name">Total separadas</span><span class="price">€99.70</span></div>
-      <div class="compare-divider">— ou —</div>
-      <div class="compare-bundle">
-        <div class="b-label">Pack Mulher Completa</div>
-        <div class="b-price">€84.90</div>
-        <div class="b-save">Poupa €14.80 · Tem o ritual completo</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BUNDLE -->
-<section class="bundle-section">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Pack Mulher Completa</span>
-      <h2>O RITUAL COMPLETO<br>DE <span class="rose">BEM-ESTAR FEMININO</span></h2>
-      <p class="lede">Três produtos. Três áreas. Um único pack desenhado para atuar em conjunto.</p>
-    </div>
-    <div class="bundle-hero"><img src="images/image-10.webp" alt="Pack Mulher Completa"></div>
-    <div class="bundle-products">
-      <div class="bundle-product">
-        <div class="bundle-product-img"><img src="images/image-11.webp" alt="Colagénio"></div>
-        <span class="eyebrow">Beleza · Estrutura</span>
-        <h4>Colagénio Peptídeos</h4>
-        <p>5 tipos de colagénio para apoiar pele, cabelo, unhas, articulações e ossos.</p>
-      </div>
-      <div class="bundle-product">
-        <div class="bundle-product-img"><img src="images/image-12.webp" alt="Corti-Soothe"></div>
-        <span class="eyebrow">Stress · Sono</span>
-        <h4>Corti-Soothe</h4>
-        <p>Magnésio + Ashwagandha + L-Teanina. Apoia o relaxamento, o sono e a gestão do stress.</p>
-      </div>
-      <div class="bundle-product">
-        <div class="bundle-product-img"><img src="images/image-13.webp" alt="Inositol"></div>
-        <span class="eyebrow">Equilíbrio · Bem-Estar</span>
-        <h4>Myo-Inositol + D3 K2</h4>
-        <p>Myo-Inositol, D-Chiro Inositol, D3 e K2. Apoia o metabolismo normal e o bem-estar feminino.</p>
-      </div>
-    </div>
-    <div class="bundle-cta">
-      <div class="b-eyebrow">Poupe €44.80 ao comprar em pack</div>
-      <div class="b-price-big"><span class="old">€129.70</span>€84.90</div>
-      <p style="margin-bottom: 28px;">3 produtos · 3 áreas do bem-estar feminino · 1 único pack.</p>
-      <button class="btn btn-gold btn-large" onclick="selectPackageBySku('PACK-MULHER')">Quero o Pack Completo →</button>
-    </div>
-  </div>
-</section>
-
-<!-- STACK -->
-<section class="stack-section">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Acrescente à sua Encomenda</span>
-      <h2>COMPLETE O SEU <span style="color: var(--c-rose);">RITUAL</span></h2>
-    </div>
-    <div class="stack-grid">
-      <div class="stack-card">
-        <div class="stack-card-img"><img src="images/image-11.webp" alt="Colagénio"></div>
-        <h4>Colagénio Peptídeos</h4>
-        <p style="font-size: 0.85rem;">5 tipos · 1800mg</p>
-        <div class="stack-price">€29.90</div>
-        <button class="btn btn-outline btn-small" onclick="selectPackageBySku('COL-1')">Adicionar</button>
-      </div>
-      <div class="stack-card">
-        <div class="stack-card-img"><img src="images/image-12.webp" alt="Corti-Soothe"></div>
-        <h4>Corti-Soothe</h4>
-        <p style="font-size: 0.85rem;">Stress · Sono</p>
-        <div class="stack-price">€17.90 <span style="font-size: 0.75rem; color: var(--c-muted); text-decoration: line-through; font-weight: 600;">€34.90</span></div>
-        <button class="btn btn-outline btn-small" onclick="addBumpFromStack()">Adicionar</button>
-      </div>
-      <div class="stack-card">
-        <div class="stack-card-img"><img src="images/image-13.webp" alt="Inositol"></div>
-        <h4>Myo-Inositol</h4>
-        <p style="font-size: 0.85rem;">Equilíbrio Hormonal</p>
-        <div class="stack-price">€34.90</div>
-        <button class="btn btn-outline btn-small" onclick="selectPackageBySku('PACK-MULHER')">No Pack</button>
       </div>
     </div>
   </div>
@@ -1018,10 +921,9 @@ p { color: var(--c-ink-soft); }
         <div class="summary-product-thumbs" id="summary-thumbs">
           <div class="summary-thumb"><img src="images/image-11.webp" alt="Colagénio"></div>
         </div>
-        <div class="summary-line"><span id="summary-product">2 Frascos Colagénio</span><span id="summary-price">€49.90</span></div>
-        <div class="summary-line" id="summary-bump-line" style="display:none;"><span>+ Corti-Soothe</span><span>€17.90</span></div>
+        <div class="summary-line"><span id="summary-product">Selecione um produto</span><span id="summary-price">—</span></div>
         <div class="summary-line"><span>Portes de envio</span><span>Grátis</span></div>
-        <div class="summary-line total"><span>Total</span><span id="summary-total">€49.90</span></div>
+        <div class="summary-line total"><span>Total</span><span id="summary-total">—</span></div>
         <p style="font-size: 0.82rem; color: var(--c-muted); margin-top: 16px; line-height: 1.6;">💰 Pago em dinheiro quando o carteiro CTT entregar. Sem cartão, sem riscos.</p>
       </div>
     </div>
@@ -1088,69 +990,49 @@ p { color: var(--c-ink-soft); }
 <script>
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwNabP52kMNwAl-RH6a0a1NPNTL610HeeCPQ8K3Ps5Yzq6gt1OQWlKZEYCtC3roow5MUw/exec';
 
-let currentPackage = { sku: 'COL-2', price: 49.90, qty: 2, label: '2 Frascos Colagénio' };
-let bumpAdded = false;
+const PRODUCTS = {
+  'COL-1': { price: 29.99, label: 'Colagénio Peptídeos', img: 'images/image-11.webp', qty: 1 },
+  'CORTI-1': { price: 29.99, label: 'Corti-Soothe', img: 'images/image-12.webp', qty: 1 },
+  'INOSITOL-1': { price: 29.99, label: 'Myo-Inositol + D3 K2', img: 'images/image-13.webp', qty: 1 },
+  'PACK-MULHER': { price: 59.99, label: 'Pack Mulher Completa', img: null, qty: 1 }
+};
+
+let currentPackage = { sku: null, price: 0, qty: 0, label: '' };
 let otoAdded = false;
 
-function changeImage(thumb, src) {
-  document.getElementById('main-image').src = src;
-  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-  thumb.classList.add('active');
-}
+function selectProduct(sku) {
+  const product = PRODUCTS[sku];
+  if (!product) return;
+  currentPackage = { sku: sku, price: product.price, qty: product.qty, label: product.label };
 
-function selectPackage(el) {
-  document.querySelectorAll('.price-option').forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
-  currentPackage = { sku: el.dataset.sku, price: parseFloat(el.dataset.price), qty: parseInt(el.dataset.qty), label: el.dataset.label };
-  const bump = document.querySelector('.order-bump');
-  if (currentPackage.sku === 'PACK-MULHER') {
-    bump.style.display = 'none';
-    document.getElementById('bump-checkbox').checked = false;
-    bumpAdded = false;
-  } else {
-    bump.style.display = 'flex';
-  }
+  // Highlight selected card
+  document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.bundle-offer').forEach(c => c.classList.remove('selected'));
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(c => { if (c.getAttribute('onclick')?.includes(sku)) c.classList.add('selected'); });
+  if (sku === 'PACK-MULHER') document.querySelector('.bundle-offer')?.classList.add('selected');
+
   updateSummary();
-}
-
-function selectPackageBySku(sku) {
-  const target = document.querySelector(`.price-option[data-sku="${sku}"]`);
-  if (target) {
-    selectPackage(target);
-    setTimeout(() => target.scrollIntoView({behavior: 'smooth', block: 'center'}), 100);
-  }
-}
-
-function addBumpFromStack() {
-  const cb = document.getElementById('bump-checkbox');
-  if (cb && document.querySelector('.order-bump').style.display !== 'none') {
-    cb.checked = true;
-    updateSummary();
-  }
+  document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
 }
 
 function updateSummary() {
-  bumpAdded = document.getElementById('bump-checkbox').checked;
-  let total = currentPackage.price;
+  if (!currentPackage.sku) return;
   document.getElementById('summary-product').textContent = currentPackage.label;
   document.getElementById('summary-price').textContent = `€${currentPackage.price.toFixed(2)}`;
-  const bumpLine = document.getElementById('summary-bump-line');
-  if (bumpAdded) { bumpLine.style.display = 'flex'; total += 17.90; } else { bumpLine.style.display = 'none'; }
-  document.getElementById('summary-total').textContent = `€${total.toFixed(2)}`;
+  document.getElementById('summary-total').textContent = `€${currentPackage.price.toFixed(2)}`;
   updateSummaryThumbs();
 }
 
 function updateSummaryThumbs() {
   const wrap = document.getElementById('summary-thumbs');
   if (!wrap) return;
-  let thumbs = '';
   if (currentPackage.sku === 'PACK-MULHER') {
-    thumbs = `<div class="summary-thumb"><img src="images/image-11.webp" alt=""></div><div class="summary-thumb"><img src="images/image-12.webp" alt=""></div><div class="summary-thumb"><img src="images/image-13.webp" alt=""></div>`;
+    wrap.innerHTML = `<div class="summary-thumb"><img src="images/image-11.webp" alt=""></div><div class="summary-thumb"><img src="images/image-12.webp" alt=""></div><div class="summary-thumb"><img src="images/image-13.webp" alt=""></div>`;
   } else {
-    thumbs = `<div class="summary-thumb"><img src="images/image-11.webp" alt=""></div>`;
-    if (bumpAdded) thumbs += `<div class="summary-thumb"><img src="images/image-12.webp" alt=""></div>`;
+    const prod = PRODUCTS[currentPackage.sku];
+    wrap.innerHTML = prod ? `<div class="summary-thumb"><img src="${prod.img}" alt=""></div>` : '';
   }
-  wrap.innerHTML = thumbs;
 }
 
 function toggleFaq(el) { el.classList.toggle('open'); }
@@ -1216,19 +1098,21 @@ setTimeout(updateFbSlider, 100);
 // ============ ORDER SUBMISSION ============
 async function submitOrder(e) {
   e.preventDefault();
+  if (!currentPackage.sku) {
+    alert('Por favor, selecione um produto antes de encomendar.');
+    document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
   btn.textContent = 'A processar...';
   const form = document.getElementById('order-form');
   const formData = new FormData(form);
   const ref = 'TPX-' + Date.now().toString(36).toUpperCase();
-  let sku = currentPackage.sku;
-  if (bumpAdded) sku += '+CORTI';
-  const totalPrice = currentPackage.price + (bumpAdded ? 17.90 : 0);
   window.pendingOrder = {
-    ref: ref, sku: sku,
+    ref: ref, sku: currentPackage.sku,
     quantity: String(currentPackage.qty),
-    price: String(totalPrice.toFixed(2)),
+    price: String(currentPackage.price.toFixed(2)),
     customer_name: formData.get('customer_name') || '',
     customer_phone: formData.get('customer_phone') || '',
     customer_email: formData.get('customer_email') || '',
@@ -1244,7 +1128,7 @@ async function submitOrder(e) {
 
 async function acceptOto() {
   otoAdded = true;
-  window.pendingOrder.sku += '+INOSITOL';
+  window.pendingOrder.sku += '+EXTRA';
   window.pendingOrder.price = String((parseFloat(window.pendingOrder.price) + 19.90).toFixed(2));
   await finalizeOrder();
 }
@@ -1278,10 +1162,12 @@ async function finalizeOrder() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
+// Mobile nav close
 document.querySelectorAll('.nav a').forEach(link => {
   link.addEventListener('click', () => document.getElementById('main-nav').classList.remove('mobile-open'));
 });
 
+// Checkout tracking
 const orderSection = document.getElementById('order');
 if (orderSection) {
   const observer = new IntersectionObserver((entries) => {
@@ -1295,7 +1181,20 @@ if (orderSection) {
   observer.observe(orderSection);
 }
 
-updateSummary();
+// ============ SCROLL REVEAL ============
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.section-head, .product-card, .bundle-offer, .benefit-item, .edge-feat, .ba-image, .fb-reviews-head').forEach(el => {
+  el.classList.add('reveal');
+  revealObserver.observe(el);
+});
 </script>
 
 </body>
