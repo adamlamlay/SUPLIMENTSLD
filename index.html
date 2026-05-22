@@ -13,9 +13,8 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 -->
 <!-- Meta Pixel -->
-<!--
-<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','XXXXXXXXXXXXXXXX');fbq('track','PageView');</script>
--->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','999839125949459');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=999839125949459&ev=PageView&noscript=1"/></noscript>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -96,6 +95,10 @@ p { color: var(--c-ink-soft); }
 .nav a:hover::after { width: 100%; }
 .header-cta { display: flex; gap: 12px; }
 .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+/* LANG TOGGLE */
+.lang-btn { display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border-radius:var(--r-pill); border:2px solid var(--c-border); background:var(--c-white); cursor:pointer; font-family:var(--f-body); font-size:0.78rem; font-weight:700; letter-spacing:0.06em; color:var(--c-ink); transition:all .2s; white-space:nowrap; }
+.lang-btn:hover { border-color:var(--c-rose); background:var(--c-blush-soft); }
+.lang-btn span:first-child { font-size:1.1rem; line-height:1; }
 @media (max-width: 920px) {
   .nav, .header-cta { display: none; }
   .mobile-toggle { display: block; }
@@ -654,8 +657,9 @@ p { color: var(--c-ink-soft); }
 <body>
 
 <div class="top-bar">
-  <div class="container">🌸 <strong>BEM-VINDA À TOPLUX!</strong> · Portes grátis · Pagamento na entrega</div>
+  <div class="container" data-i18n-html="topbar">🌸 <strong>BEM-VINDA À TOPLUX!</strong> · Portes grátis · Pagamento na entrega</div>
 </div>
+
 
 <header class="header">
   <div class="container header-inner">
@@ -665,14 +669,17 @@ p { color: var(--c-ink-soft); }
     </a>
     <nav>
       <ul class="nav" id="main-nav">
-        <li><a href="#reviews">Avaliações</a></li>
-        <li><a href="#features">Características</a></li>
-        <li><a href="#pricing">Produtos</a></li>
+        <li><a href="#reviews" data-i18n="nav_reviews">Avaliações</a></li>
+        <li><a href="#features" data-i18n="nav_features">Características</a></li>
+        <li><a href="#pricing" data-i18n="nav_products">Produtos</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#order">Encomendar</a></li>
+        <li><a href="#order" data-i18n="nav_order">Encomendar</a></li>
       </ul>
     </nav>
-    <div class="header-cta"><a href="#order" class="btn btn-rose">Encomendar</a></div>
+    <div class="header-cta"><a href="#order" class="btn btn-rose" data-i18n="nav_order">Encomendar</a></div>
+    <button id="lang-toggle" onclick="toggleLanguage()" class="lang-btn" aria-label="Switch language" style="flex-shrink:0;">
+      <span id="lang-flag">🇬🇧</span> <span id="lang-label">EN</span>
+    </button>
     <button class="mobile-toggle" onclick="document.getElementById('main-nav').classList.toggle('mobile-open')" aria-label="Menu">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
@@ -682,7 +689,7 @@ p { color: var(--c-ink-soft); }
 <section class="hero-fullwidth" id="top">
   <img src="images/image_slide_hero.webp" alt="Toplux Nutrition — 3 Produtos Premium para o Bem-Estar Feminino">
   <div class="hero-fullwidth-overlay">
-    <a href="#pricing" class="btn btn-rose btn-large">Encomendar Agora →</a>
+    <a href="#pricing" class="btn btn-rose btn-large" data-i18n="hero_cta">Encomendar Agora →</a>
   </div>
 </section>
 
@@ -690,10 +697,10 @@ p { color: var(--c-ink-soft); }
 <!-- TRUST STRIP -->
 <div class="trust-strip">
   <div class="container trust-row">
-    <div class="trust-pill"><span class="pill-num">5</span>Tipos de Colagénio</div>
-    <div class="trust-pill"><span class="pill-num">1800mg</span>Por Dose</div>
-    <div class="trust-pill"><span class="pill-num">90</span>Cápsulas / Frasco</div>
-    <div class="trust-pill"><span class="pill-num">UE</span>Produção Certificada</div>
+    <div class="trust-pill"><span class="pill-num">5</span><span data-i18n="trust_1">Tipos de Colagénio</span></div>
+    <div class="trust-pill"><span class="pill-num">1800mg</span><span data-i18n="trust_2">Por Dose</span></div>
+    <div class="trust-pill"><span class="pill-num">90</span><span data-i18n="trust_3">Cápsulas / Frasco</span></div>
+    <div class="trust-pill"><span class="pill-num">UE</span><span data-i18n="trust_4">Produção Certificada</span></div>
   </div>
 </div>
 
@@ -702,10 +709,10 @@ p { color: var(--c-ink-soft); }
     <div class="fb-reviews-head">
       <div class="fb-icon">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-        Avaliações no Facebook
+        <span data-i18n="reviews_fb">Avaliações no Facebook</span>
       </div>
-      <h2>O QUE AS NOSSAS<br>CLIENTES <span class="rose">PARTILHAM</span></h2>
-      <p>Avaliações partilhadas por clientes Toplux nas suas redes sociais</p>
+      <h2 data-i18n-html="reviews_title">O QUE AS NOSSAS<br>CLIENTES <span class="rose">PARTILHAM</span></h2>
+      <p data-i18n="reviews_sub">Avaliações partilhadas por clientes Toplux nas suas redes sociais</p>
     </div>
 
     <div class="fb-slider-wrap">
@@ -739,19 +746,19 @@ p { color: var(--c-ink-soft); }
   <div class="container">
     <div class="benefits-grid">
       <div class="benefits-left">
-        <span class="eyebrow">Benefícios</span>
-        <h2>BENEFÍCIOS DO<br>COLAGÉNIO <span class="rose">PEPTÍDEOS</span></h2>
+        <span class="eyebrow" data-i18n="ben_eyebrow">Benefícios</span>
+        <h2 data-i18n-html="ben_title">BENEFÍCIOS DO<br>COLAGÉNIO <span class="rose">PEPTÍDEOS</span></h2>
         <div class="benefit-item">
           <div class="benefit-num">1</div>
-          <div><h4>Revitaliza Pele, Cabelo e Unhas</h4><p>O colagénio é a proteína estrutural que mantém a firmeza da pele, a força do cabelo e a resistência das unhas. A suplementação diária ajuda a repor o que o corpo deixa de produzir após os 25 anos.</p></div>
+          <div><h4 data-i18n="ben_1_title">Revitaliza Pele, Cabelo e Unhas</h4><p data-i18n="ben_1_desc">O colagénio é a proteína estrutural que mantém a firmeza da pele, a força do cabelo e a resistência das unhas. A suplementação diária ajuda a repor o que o corpo deixa de produzir após os 25 anos.</p></div>
         </div>
         <div class="benefit-item">
           <div class="benefit-num">2</div>
-          <div><h4>Apoia as Articulações</h4><p>Estudos sobre peptídeos de colagénio sugerem benefícios no conforto articular e na mobilidade. O colagénio Tipo II é especialmente importante para a cartilagem.</p></div>
+          <div><h4 data-i18n="ben_2_title">Apoia as Articulações</h4><p data-i18n="ben_2_desc">Estudos sobre peptídeos de colagénio sugerem benefícios no conforto articular e na mobilidade. O colagénio Tipo II é especialmente importante para a cartilagem.</p></div>
         </div>
         <div class="benefit-item">
           <div class="benefit-num">3</div>
-          <div><h4>Recuperação e Energia</h4><p>Aminoácidos essenciais para o corpo manter os tecidos conectivos saudáveis — pele, ossos, vasos sanguíneos. A base do bem-estar diário.</p></div>
+          <div><h4 data-i18n="ben_3_title">Recuperação e Energia</h4><p data-i18n="ben_3_desc">Aminoácidos essenciais para o corpo manter os tecidos conectivos saudáveis — pele, ossos, vasos sanguíneos. A base do bem-estar diário.</p></div>
         </div>
       </div>
       <div class="benefits-image"><img src="images/image-04.webp" alt="Mulher a tomar Toplux"></div>
@@ -764,18 +771,18 @@ p { color: var(--c-ink-soft); }
 <section class="beforeafter">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">A Jornada</span>
-      <h2>O QUE ESPERAR<br>EM <span class="rose">8 A 12 SEMANAS</span></h2>
-      <p class="lede">Os resultados aparecem gradualmente. Consistência é o segredo.</p>
+      <span class="eyebrow" data-i18n="ba_eyebrow">A Jornada</span>
+      <h2 data-i18n-html="ba_title">O QUE ESPERAR<br>EM <span class="rose">8 A 12 SEMANAS</span></h2>
+      <p class="lede" data-i18n="ba_sub">Os resultados aparecem gradualmente. Consistência é o segredo.</p>
     </div>
     <div class="ba-image"><img src="images/image-20.webp" alt="Antes e depois"></div>
-    <div class="ba-labels"><div class="ba-label">Antes</div><div class="ba-label">Depois — 12 semanas</div></div>
+    <div class="ba-labels"><div class="ba-label" data-i18n="ba_before">Antes</div><div class="ba-label" data-i18n="ba_after">Depois — 12 semanas</div></div>
     <div class="ba-timeline">
-      <div class="ba-week"><div class="w-num">4</div><div class="w-label">Sem · primeiros sinais</div></div>
-      <div class="ba-week"><div class="w-num">8</div><div class="w-label">Sem · pele mais firme</div></div>
-      <div class="ba-week"><div class="w-num">12</div><div class="w-label">Sem · resultados visíveis</div></div>
+      <div class="ba-week"><div class="w-num">4</div><div class="w-label" data-i18n="ba_w4">Sem · primeiros sinais</div></div>
+      <div class="ba-week"><div class="w-num">8</div><div class="w-label" data-i18n="ba_w8">Sem · pele mais firme</div></div>
+      <div class="ba-week"><div class="w-num">12</div><div class="w-label" data-i18n="ba_w12">Sem · resultados visíveis</div></div>
     </div>
-    <p class="ba-disclaimer">* Resultados individuais variam. As imagens são ilustrativas. A suplementação com colagénio funciona melhor combinada com hidratação, sono adequado e alimentação equilibrada. Não substitui cuidados médicos.</p>
+    <p class="ba-disclaimer" data-i18n="ba_disclaimer">* Resultados individuais variam. As imagens são ilustrativas. A suplementação com colagénio funciona melhor combinada com hidratação, sono adequado e alimentação equilibrada. Não substitui cuidados médicos.</p>
   </div>
 </section>
 
@@ -785,30 +792,30 @@ p { color: var(--c-ink-soft); }
   <div class="container">
     <div class="edge-grid">
       <div class="edge-left">
-        <span class="eyebrow">O Toplux Edge</span>
-        <h2>O que torna o<br>Toplux <span style="color: var(--c-rose);">diferente</span>?</h2>
-        <p>Não acreditamos em fórmulas inchadas com ingredientes preenchimento para impressionar no rótulo. Acreditamos em fazer poucas coisas — bem feitas.</p>
+        <span class="eyebrow" data-i18n="edge_eyebrow">O Toplux Edge</span>
+        <h2 data-i18n-html="edge_title">O que torna o<br>Toplux <span style="color: var(--c-rose);">diferente</span>?</h2>
+        <p data-i18n="edge_desc">Não acreditamos em fórmulas inchadas com ingredientes preenchimento para impressionar no rótulo. Acreditamos em fazer poucas coisas — bem feitas.</p>
 
         <div class="edge-features">
           <div class="edge-feat">
             <div class="e-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <h4>Alta Pureza</h4>
-            <p>Cada frasco é feito com 1800mg de colagénio, sem aditivos desnecessários, aromas ou corantes artificiais. Nada mais.</p>
+            <h4 data-i18n="edge_f1_title">Alta Pureza</h4>
+            <p data-i18n="edge_f1_desc">Cada frasco é feito com 1800mg de colagénio, sem aditivos desnecessários, aromas ou corantes artificiais. Nada mais.</p>
           </div>
           <div class="edge-feat">
             <div class="e-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11h6m-3-3v6m-7 7h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z"/></svg></div>
-            <h4>Testado em Laboratório</h4>
-            <p>Cada lote é testado para pureza e potência. Não publicamos nada que não verificámos primeiro.</p>
+            <h4 data-i18n="edge_f2_title">Testado em Laboratório</h4>
+            <p data-i18n="edge_f2_desc">Cada lote é testado para pureza e potência. Não publicamos nada que não verificámos primeiro.</p>
           </div>
           <div class="edge-feat">
             <div class="e-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <h4>Sustentável</h4>
-            <p>Ingredientes provenientes de fontes responsáveis. Sem práticas predatórias, sem corte de cantos na qualidade.</p>
+            <h4 data-i18n="edge_f3_title">Sustentável</h4>
+            <p data-i18n="edge_f3_desc">Ingredientes provenientes de fontes responsáveis. Sem práticas predatórias, sem corte de cantos na qualidade.</p>
           </div>
           <div class="edge-feat">
             <div class="e-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-            <h4>Sem Sabor</h4>
-            <p>Cápsulas vegetais de fácil ingestão, sem sabor, sem mistura, sem complicações.</p>
+            <h4 data-i18n="edge_f4_title">Sem Sabor</h4>
+            <p data-i18n="edge_f4_desc">Cápsulas vegetais de fácil ingestão, sem sabor, sem mistura, sem complicações.</p>
           </div>
         </div>
       </div>
@@ -821,16 +828,16 @@ p { color: var(--c-ink-soft); }
 <section class="pricing-section" id="pricing">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Os Nossos Produtos</span>
-      <h2>ESCOLHA O SEU <span class="rose">RITUAL</span></h2>
-      <p class="lede">Cada produto foi formulado para atuar numa área essencial do bem-estar feminino.</p>
+      <span class="eyebrow" data-i18n="price_eyebrow">Os Nossos Produtos</span>
+      <h2 data-i18n-html="price_title">ESCOLHA O SEU <span class="rose">RITUAL</span></h2>
+      <p class="lede" data-i18n="price_sub">Cada produto foi formulado para atuar numa área essencial do bem-estar feminino.</p>
     </div>
     <div class="products-grid">
       <div class="product-card" onclick="selectProduct('COL-1')">
         <div class="product-card-img"><img src="images/image-11.webp" alt="Colagénio Peptídeos"></div>
         <div class="product-card-info">
           <h3>Colagénio Peptídeos</h3>
-          <p>Pele, cabelo, unhas e articulações</p>
+          <p data-i18n="prod_col_desc">Pele, cabelo, unhas e articulações</p>
         </div>
         <div class="product-price">€29.99</div>
       </div>
@@ -838,7 +845,7 @@ p { color: var(--c-ink-soft); }
         <div class="product-card-img"><img src="images/image-12.webp" alt="Corti-Soothe"></div>
         <div class="product-card-info">
           <h3>Corti-Soothe</h3>
-          <p>Stress, sono e relaxamento</p>
+          <p data-i18n="prod_corti_desc">Stress, sono e relaxamento</p>
         </div>
         <div class="product-price">€29.99</div>
       </div>
@@ -846,13 +853,13 @@ p { color: var(--c-ink-soft); }
         <div class="product-card-img"><img src="images/image-13.webp" alt="Myo-Inositol"></div>
         <div class="product-card-info">
           <h3>Myo-Inositol + D3 K2</h3>
-          <p>Equilíbrio e bem-estar feminino</p>
+          <p data-i18n="prod_ino_desc">Equilíbrio e bem-estar feminino</p>
         </div>
         <div class="product-price">€29.99</div>
       </div>
     </div>
     <div class="bundle-offer" onclick="selectProduct('PACK-MULHER')">
-      <div class="bundle-offer-badge">🔥 MELHOR OFERTA — POUPE €29.98</div>
+      <div class="bundle-offer-badge" data-i18n="bundle_badge">🔥 MELHOR OFERTA — POUPE €29.98</div>
       <div class="bundle-offer-inner">
         <div class="bundle-offer-images">
           <img src="images/image-11.webp" alt="Colagénio">
@@ -860,14 +867,14 @@ p { color: var(--c-ink-soft); }
           <img src="images/image-13.webp" alt="Myo-Inositol">
         </div>
         <div class="bundle-offer-content">
-          <h3>PACK MULHER COMPLETA</h3>
-          <p>Os 3 produtos juntos — Colagénio + Corti-Soothe + Myo-Inositol</p>
+          <h3 data-i18n="bundle_title">PACK MULHER COMPLETA</h3>
+          <p data-i18n="bundle_desc">Os 3 produtos juntos — Colagénio + Corti-Soothe + Myo-Inositol</p>
           <div class="bundle-pricing">
             <span class="old-price">€89.97</span>
             <span class="new-price">€59.99</span>
           </div>
-          <p class="bundle-save">✓ Poupa €29.98 ao comprar em pack</p>
-          <button class="btn btn-rose btn-large">Quero o Pack Completo →</button>
+          <p class="bundle-save" data-i18n="bundle_save">✓ Poupa €29.98 ao comprar em pack</p>
+          <button class="btn btn-rose btn-large" data-i18n="bundle_cta">Quero o Pack Completo →</button>
         </div>
       </div>
     </div>
@@ -915,8 +922,8 @@ p { color: var(--c-ink-soft); }
 <section class="faq-section" id="faq">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Perguntas Frequentes</span>
-      <h2>TUDO O QUE <span style="color: var(--c-rose);">PRECISA SABER</span></h2>
+      <span class="eyebrow" data-i18n="faq_eyebrow">Perguntas Frequentes</span>
+      <h2 data-i18n-html="faq_title">TUDO O QUE <span style="color: var(--c-rose);">PRECISA SABER</span></h2>
     </div>
     <div class="faq-list">
       <div class="faq-item" onclick="toggleFaq(this)">
@@ -955,35 +962,35 @@ p { color: var(--c-ink-soft); }
 <section class="order-section" id="order">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Finalizar Encomenda</span>
-      <h2>ESTÁ A <span style="color: var(--c-rose);">UM PASSO</span></h2>
+      <span class="eyebrow" data-i18n="order_eyebrow">Finalizar Encomenda</span>
+      <h2 data-i18n-html="order_title">ESTÁ A <span style="color: var(--c-rose);">UM PASSO</span></h2>
     </div>
     <div class="order-grid">
       <div class="order-form">
-        <div class="form-note">📞 Iremos contactá-la nas próximas 24h para confirmar a sua encomenda antes do envio. Pagamento em dinheiro na entrega — sem cartão necessário.</div>
+        <div class="form-note" data-i18n="order_note">📞 Iremos contactá-la nas próximas 24h para confirmar a sua encomenda antes do envio. Pagamento em dinheiro na entrega — sem cartão necessário.</div>
         <form id="order-form" onsubmit="submitOrder(event)">
-          <div class="form-field"><label for="customer_name">Nome completo *</label><input type="text" id="customer_name" name="customer_name" required></div>
-          <div class="form-field"><label for="customer_phone">Telemóvel *</label><input type="tel" id="customer_phone" name="customer_phone" required placeholder="912 345 678"></div>
-          <div class="form-field"><label for="customer_email">Email (opcional)</label><input type="email" id="customer_email" name="customer_email"></div>
-          <div class="form-field"><label for="customer_address">Morada completa *</label><input type="text" id="customer_address" name="customer_address" required placeholder="Rua, número, andar"></div>
+          <div class="form-field"><label for="customer_name" data-i18n="form_name">Nome completo *</label><input type="text" id="customer_name" name="customer_name" required></div>
+          <div class="form-field"><label for="customer_phone" data-i18n="form_phone">Telemóvel *</label><input type="tel" id="customer_phone" name="customer_phone" required placeholder="912 345 678"></div>
+          <div class="form-field"><label for="customer_email" data-i18n="form_email">Email (opcional)</label><input type="email" id="customer_email" name="customer_email"></div>
+          <div class="form-field"><label for="customer_address" data-i18n="form_address">Morada completa *</label><input type="text" id="customer_address" name="customer_address" required placeholder="Rua, número, andar"></div>
           <div class="form-row">
-            <div class="form-field"><label for="city">Cidade *</label><input type="text" id="city" name="city" required></div>
-            <div class="form-field"><label for="zip_code">Código Postal *</label><input type="text" id="zip_code" name="zip_code" required placeholder="0000-000"></div>
+            <div class="form-field"><label for="city" data-i18n="form_city">Cidade *</label><input type="text" id="city" name="city" required></div>
+            <div class="form-field"><label for="zip_code" data-i18n="form_zip">Código Postal *</label><input type="text" id="zip_code" name="zip_code" required placeholder="0000-000"></div>
           </div>
-          <div class="form-field"><label for="note">Notas para entrega (opcional)</label><textarea id="note" name="note" rows="2"></textarea></div>
-          <button type="submit" class="btn-add-cart" id="submit-btn">Confirmar Encomenda</button>
+          <div class="form-field"><label for="note" data-i18n="form_notes">Notas para entrega (opcional)</label><textarea id="note" name="note" rows="2"></textarea></div>
+          <button type="submit" class="btn-add-cart" id="submit-btn" data-i18n="form_submit">Confirmar Encomenda</button>
           <p style="font-size: 0.72rem; color: var(--c-muted); margin-top: 16px; text-align: center; line-height: 1.6;">Ao finalizar, concorda com os <a href="#" style="color: var(--c-rose);">Termos</a> e <a href="#" style="color: var(--c-rose);">Política de Privacidade</a>.</p>
         </form>
       </div>
       <div class="order-summary">
-        <h3>Resumo</h3>
+        <h3 data-i18n="summary_title">Resumo</h3>
         <div class="summary-product-thumbs" id="summary-thumbs">
           <div class="summary-thumb"><img src="images/image-11.webp" alt="Colagénio"></div>
         </div>
-        <div class="summary-line"><span id="summary-product">Selecione um produto</span><span id="summary-price">—</span></div>
-        <div class="summary-line"><span>Portes de envio</span><span>Grátis</span></div>
+        <div class="summary-line"><span id="summary-product" data-i18n="summary_select">Selecione um produto</span><span id="summary-price">—</span></div>
+        <div class="summary-line"><span data-i18n="summary_shipping">Portes de envio</span><span data-i18n="summary_free">Grátis</span></div>
         <div class="summary-line total"><span>Total</span><span id="summary-total">—</span></div>
-        <p style="font-size: 0.82rem; color: var(--c-muted); margin-top: 16px; line-height: 1.6;">💰 Pago em dinheiro quando o carteiro CTT entregar. Sem cartão, sem riscos.</p>
+        <p style="font-size: 0.82rem; color: var(--c-muted); margin-top: 16px; line-height: 1.6;" data-i18n="summary_cod">💰 Pago em dinheiro quando o carteiro CTT entregar. Sem cartão, sem riscos.</p>
       </div>
     </div>
   </div>
@@ -1188,12 +1195,7 @@ async function submitOrder(e) {
     zip_code: formData.get('zip_code') || '',
     note: formData.get('note') || ''
   };
-  // Skip OTO for bundle — it already includes all 3 products
-  if (currentPackage.sku === 'PACK-MULHER') {
-    await finalizeOrder();
-  } else {
-    document.getElementById('oto-modal').classList.add('active');
-  }
+  document.getElementById('oto-modal').classList.add('active');
   btn.disabled = false;
   btn.textContent = 'Confirmar Encomenda';
 }
@@ -1212,7 +1214,8 @@ async function finalizeOrder() {
   try {
     const params = new URLSearchParams(window.pendingOrder).toString();
     const submitUrl = SHEET_URL + '?' + params;
-    // Single fetch — no duplicate request
+    const img = new Image();
+    img.src = submitUrl;
     fetch(submitUrl, { method: 'GET', mode: 'no-cors' }).catch(() => {});
     await new Promise(resolve => setTimeout(resolve, 1500));
   } catch (err) { console.error(err); }
@@ -1266,6 +1269,214 @@ document.querySelectorAll('.section-head, .product-card, .bundle-offer, .benefit
   el.classList.add('reveal');
   revealObserver.observe(el);
 });
+// ============ LANGUAGE TOGGLE (EN / FR) ============
+let currentLang = localStorage.getItem('toplux_lang') || 'pt'; // default Portuguese (original)
+
+const TRANSLATIONS = {
+  en: {
+    // Nav
+    nav_reviews: 'Reviews', nav_features: 'Features', nav_products: 'Products', nav_order: 'Order Now',
+    // Top bar
+    topbar: '🌸 <strong>WELCOME TO TOPLUX!</strong> · Free shipping · Cash on delivery',
+    // Hero
+    hero_cta: 'Order Now →',
+    // Trust strip
+    trust_1: 'Types of Collagen', trust_2: 'Per Dose', trust_3: 'Capsules / Bottle', trust_4: 'EU Certified Production',
+    // Reviews
+    reviews_fb: 'Facebook Reviews',
+    reviews_title: 'WHAT OUR<br>CUSTOMERS <span class="rose">SAY</span>',
+    reviews_sub: 'Real reviews shared by Toplux customers on social media',
+    // Benefits
+    ben_eyebrow: 'Benefits',
+    ben_title: 'COLLAGEN<br>PEPTIDES <span class="rose">BENEFITS</span>',
+    ben_1_title: 'Revitalizes Skin, Hair & Nails',
+    ben_1_desc: 'Collagen is the structural protein that maintains skin firmness, hair strength and nail resilience. Daily supplementation helps replenish what the body stops producing after age 25.',
+    ben_2_title: 'Supports Joints',
+    ben_2_desc: 'Studies on collagen peptides suggest benefits for joint comfort and mobility. Type II collagen is especially important for cartilage.',
+    ben_3_title: 'Recovery & Energy',
+    ben_3_desc: 'Essential amino acids to help the body maintain healthy connective tissues — skin, bones, blood vessels. The foundation of daily wellness.',
+    // Before/After
+    ba_eyebrow: 'The Journey', ba_sub: 'Results appear gradually. Consistency is key.',
+    ba_title: 'WHAT TO EXPECT<br>IN <span class="rose">8 TO 12 WEEKS</span>',
+    ba_before: 'Before', ba_after: 'After — 12 weeks',
+    ba_w4: 'Wk · first signs', ba_w8: 'Wk · firmer skin', ba_w12: 'Wk · visible results',
+    ba_disclaimer: '* Individual results vary. Images are illustrative. Collagen supplementation works best combined with hydration, adequate sleep and a balanced diet. Does not replace medical care.',
+    // Edge
+    edge_eyebrow: 'The Toplux Edge',
+    edge_title: 'What makes<br>Toplux <span style="color: var(--c-rose);">different</span>?',
+    edge_desc: "We don't believe in bloated formulas with filler ingredients to impress on the label. We believe in doing fewer things — done right.",
+    edge_f1_title: 'High Purity', edge_f1_desc: 'Each bottle is made with 1800mg of collagen, no unnecessary additives, flavours or artificial colours. Nothing else.',
+    edge_f2_title: 'Lab Tested', edge_f2_desc: 'Every batch is tested for purity and potency. We don\'t publish anything we haven\'t verified first.',
+    edge_f3_title: 'Sustainable', edge_f3_desc: 'Ingredients sourced from responsible suppliers. No predatory practices, no cutting corners on quality.',
+    edge_f4_title: 'Tasteless', edge_f4_desc: 'Easy-to-swallow vegetable capsules, no taste, no mixing, no complications.',
+    // Pricing
+    price_eyebrow: 'Our Products',
+    price_title: 'CHOOSE YOUR <span class="rose">RITUAL</span>',
+    price_sub: 'Each product was formulated to target an essential area of women\'s wellness.',
+    prod_col_desc: 'Skin, hair, nails and joints',
+    prod_corti_desc: 'Stress, sleep and relaxation',
+    prod_ino_desc: 'Balance and women\'s wellness',
+    // Bundle
+    bundle_badge: '🔥 BEST OFFER — SAVE €29.98',
+    bundle_title: 'COMPLETE WOMEN\'S PACK',
+    bundle_desc: 'All 3 products together — Collagen + Corti-Soothe + Myo-Inositol',
+    bundle_save: '✓ Save €29.98 when buying the pack',
+    bundle_cta: 'I Want the Full Pack →',
+    // FAQ
+    faq_eyebrow: 'Frequently Asked Questions',
+    faq_title: 'EVERYTHING YOU <span style="color: var(--c-rose);">NEED TO KNOW</span>',
+    // Order
+    order_eyebrow: 'Complete Your Order',
+    order_title: 'YOU\'RE <span style="color: var(--c-rose);">ONE STEP AWAY</span>',
+    order_note: '📞 We will contact you within 24h to confirm your order before shipping. Cash on delivery — no credit card needed.',
+    form_name: 'Full name *', form_phone: 'Phone *', form_email: 'Email (optional)',
+    form_address: 'Full address *', form_city: 'City *', form_zip: 'Postal code *',
+    form_notes: 'Delivery notes (optional)', form_submit: 'Confirm Order',
+    // Summary
+    summary_title: 'Summary', summary_select: 'Select a product',
+    summary_shipping: 'Shipping', summary_free: 'Free',
+    summary_cod: '💰 Pay cash when the postman delivers. No card, no risk.',
+  },
+  fr: {
+    // Nav
+    nav_reviews: 'Avis', nav_features: 'Caractéristiques', nav_products: 'Produits', nav_order: 'Commander',
+    // Top bar
+    topbar: '🌸 <strong>BIENVENUE CHEZ TOPLUX !</strong> · Livraison gratuite · Paiement à la livraison',
+    // Hero
+    hero_cta: 'Commander Maintenant →',
+    // Trust strip
+    trust_1: 'Types de Collagène', trust_2: 'Par Dose', trust_3: 'Gélules / Flacon', trust_4: 'Production Certifiée UE',
+    // Reviews
+    reviews_fb: 'Avis Facebook',
+    reviews_title: 'CE QUE NOS<br>CLIENTES <span class="rose">PARTAGENT</span>',
+    reviews_sub: 'Avis partagés par les clientes Toplux sur les réseaux sociaux',
+    // Benefits
+    ben_eyebrow: 'Bienfaits',
+    ben_title: 'BIENFAITS DU<br>COLLAGÈNE <span class="rose">PEPTIDES</span>',
+    ben_1_title: 'Revitalise Peau, Cheveux & Ongles',
+    ben_1_desc: 'Le collagène est la protéine structurelle qui maintient la fermeté de la peau, la force des cheveux et la résistance des ongles. La supplémentation quotidienne aide à compenser ce que le corps cesse de produire après 25 ans.',
+    ben_2_title: 'Soutient les Articulations',
+    ben_2_desc: 'Les études sur les peptides de collagène suggèrent des bienfaits pour le confort articulaire et la mobilité. Le collagène de Type II est particulièrement important pour le cartilage.',
+    ben_3_title: 'Récupération & Énergie',
+    ben_3_desc: 'Acides aminés essentiels pour aider le corps à maintenir des tissus conjonctifs sains — peau, os, vaisseaux sanguins. La base du bien-être quotidien.',
+    // Before/After
+    ba_eyebrow: 'Le Parcours', ba_sub: 'Les résultats apparaissent progressivement. La constance est la clé.',
+    ba_title: 'À QUOI S\'ATTENDRE<br>EN <span class="rose">8 À 12 SEMAINES</span>',
+    ba_before: 'Avant', ba_after: 'Après — 12 semaines',
+    ba_w4: 'Sem · premiers signes', ba_w8: 'Sem · peau plus ferme', ba_w12: 'Sem · résultats visibles',
+    ba_disclaimer: '* Les résultats individuels varient. Les images sont illustratives. La supplémentation en collagène fonctionne mieux combinée avec une bonne hydratation, un sommeil adéquat et une alimentation équilibrée. Ne remplace pas les soins médicaux.',
+    // Edge
+    edge_eyebrow: 'L\'Avantage Toplux',
+    edge_title: 'Qu\'est-ce qui rend<br>Toplux <span style="color: var(--c-rose);">différent</span> ?',
+    edge_desc: 'Nous ne croyons pas aux formules gonflées avec des ingrédients de remplissage pour impressionner sur l\'étiquette. Nous croyons qu\'il faut faire peu de choses — mais les faire bien.',
+    edge_f1_title: 'Haute Pureté', edge_f1_desc: 'Chaque flacon contient 1800mg de collagène, sans additifs inutiles, arômes ou colorants artificiels. Rien d\'autre.',
+    edge_f2_title: 'Testé en Laboratoire', edge_f2_desc: 'Chaque lot est testé pour la pureté et la puissance. Nous ne publions rien que nous n\'avons pas vérifié au préalable.',
+    edge_f3_title: 'Durable', edge_f3_desc: 'Ingrédients provenant de sources responsables. Pas de pratiques prédatrices, pas de compromis sur la qualité.',
+    edge_f4_title: 'Sans Goût', edge_f4_desc: 'Gélules végétales faciles à avaler, sans goût, sans mélange, sans complications.',
+    // Pricing
+    price_eyebrow: 'Nos Produits',
+    price_title: 'CHOISISSEZ VOTRE <span class="rose">RITUEL</span>',
+    price_sub: 'Chaque produit a été formulé pour cibler un domaine essentiel du bien-être féminin.',
+    prod_col_desc: 'Peau, cheveux, ongles et articulations',
+    prod_corti_desc: 'Stress, sommeil et relaxation',
+    prod_ino_desc: 'Équilibre et bien-être féminin',
+    // Bundle
+    bundle_badge: '🔥 MEILLEURE OFFRE — ÉCONOMISEZ €29.98',
+    bundle_title: 'PACK FEMME COMPLET',
+    bundle_desc: 'Les 3 produits ensemble — Collagène + Corti-Soothe + Myo-Inositol',
+    bundle_save: '✓ Économisez €29.98 en achetant le pack',
+    bundle_cta: 'Je Veux le Pack Complet →',
+    // FAQ
+    faq_eyebrow: 'Questions Fréquentes',
+    faq_title: 'TOUT CE QUE VOUS <span style="color: var(--c-rose);">DEVEZ SAVOIR</span>',
+    // Order
+    order_eyebrow: 'Finaliser la Commande',
+    order_title: 'VOUS ÊTES À <span style="color: var(--c-rose);">UN PAS</span>',
+    order_note: '📞 Nous vous contacterons dans les 24h pour confirmer votre commande avant l\'expédition. Paiement en espèces à la livraison — aucune carte nécessaire.',
+    form_name: 'Nom complet *', form_phone: 'Téléphone *', form_email: 'Email (optionnel)',
+    form_address: 'Adresse complète *', form_city: 'Ville *', form_zip: 'Code postal *',
+    form_notes: 'Notes de livraison (optionnel)', form_submit: 'Confirmer la Commande',
+    // Summary
+    summary_title: 'Résumé', summary_select: 'Sélectionnez un produit',
+    summary_shipping: 'Frais de livraison', summary_free: 'Gratuit',
+    summary_cod: '💰 Payez en espèces à la livraison. Sans carte, sans risque.',
+  }
+};
+
+// Language cycle: pt → en → fr → pt
+const LANG_CYCLE = ['pt', 'en', 'fr'];
+const LANG_FLAGS = { pt: '🇵🇹', en: '🇬🇧', fr: '🇫🇷' };
+const LANG_LABELS = { pt: 'PT', en: 'EN', fr: 'FR' };
+
+function applyLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('toplux_lang', lang);
+  document.documentElement.lang = lang === 'pt' ? 'pt-PT' : lang;
+
+  // Update toggle buttons
+  const nextLang = LANG_CYCLE[(LANG_CYCLE.indexOf(lang) + 1) % LANG_CYCLE.length];
+  ['', '-m'].forEach(suffix => {
+    const flag = document.getElementById('lang-flag' + suffix);
+    const label = document.getElementById('lang-label' + suffix);
+    if (flag) flag.textContent = LANG_FLAGS[nextLang];
+    if (label) label.textContent = LANG_LABELS[nextLang];
+  });
+
+  if (lang === 'pt') {
+    // Reset to original Portuguese — remove translations
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      if (el.dataset.original) el.textContent = el.dataset.original;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      if (el.dataset.originalHtml) el.innerHTML = el.dataset.originalHtml;
+    });
+    return;
+  }
+
+  const dict = TRANSLATIONS[lang];
+  if (!dict) return;
+
+  // Apply text translations
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (!el.dataset.original) el.dataset.original = el.textContent;
+    if (dict[key]) el.textContent = dict[key];
+  });
+
+  // Apply HTML translations (for elements with <br>, <span>, etc.)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (!el.dataset.originalHtml) el.dataset.originalHtml = el.innerHTML;
+    if (dict[key]) el.innerHTML = dict[key];
+  });
+}
+
+function toggleLanguage() {
+  const nextIndex = (LANG_CYCLE.indexOf(currentLang) + 1) % LANG_CYCLE.length;
+  applyLanguage(LANG_CYCLE[nextIndex]);
+}
+
+// Store originals on first load, then apply saved language
+document.querySelectorAll('[data-i18n]').forEach(el => {
+  el.dataset.original = el.textContent;
+});
+document.querySelectorAll('[data-i18n-html]').forEach(el => {
+  el.dataset.originalHtml = el.innerHTML;
+});
+
+// Apply saved language preference
+if (currentLang !== 'pt') {
+  applyLanguage(currentLang);
+} else {
+  // Show next lang (EN) on the button
+  ['', '-m'].forEach(suffix => {
+    const flag = document.getElementById('lang-flag' + suffix);
+    const label = document.getElementById('lang-label' + suffix);
+    if (flag) flag.textContent = '🇬🇧';
+    if (label) label.textContent = 'EN';
+  });
+}
+
 </script>
 
 </body>
