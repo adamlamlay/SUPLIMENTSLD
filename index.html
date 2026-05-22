@@ -6,12 +6,27 @@
 <meta name="description" content="Toplux Colagénio Peptídeos 1800mg — 5 tipos de colagénio para pele, cabelo, unhas e articulações. Entrega em Portugal com pagamento na entrega.">
 <title>Toplux Nutrition — Colagénio 1800mg | Volte a reconhecer-se ao espelho</title>
 
-<!-- TRACKING PIXELS -->
-<!--
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
-<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','XXXXXXXXXXXXXXXX');fbq('track','PageView');</script>
--->
+<!-- ============================================================
+     META PIXEL — Dataset ID: 999839125949459
+     Events tracked:
+       - PageView         : on page load
+       - ViewContent      : when pricing section is viewed
+       - AddToCart        : when a product is selected
+       - InitiateCheckout : when order section is viewed
+       - Purchase         : when order is finalized (with value + currency)
+============================================================ -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '999839125949459');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=999839125949459&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2304,6 +2319,22 @@ function selectProduct(sku) {
   }
 
   updateSummary();
+
+  // META PIXEL — AddToCart event (skip on initial default-effect pre-select)
+  if (window.__pixelReady) {
+    try {
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'AddToCart', {
+          content_ids: [sku],
+          content_name: currentPackage.label,
+          content_type: 'product',
+          value: currentPackage.price,
+          currency: 'EUR'
+        });
+      }
+    } catch (e) {}
+  }
+
   document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -2447,9 +2478,22 @@ async function finalizeOrder() {
 
   try {
     const orderValue = parseFloat(window.pendingOrder.price);
-    if (typeof fbq !== 'undefined') fbq('track', 'Purchase', { value: orderValue, currency: 'EUR' });
+    const sku = window.pendingOrder.sku;
+    const orderRef = window.pendingOrder.ref;
+
+    // META PIXEL — Purchase event with full e-commerce parameters
+    if (typeof fbq !== 'undefined') {
+      fbq('track', 'Purchase', {
+        value: orderValue,
+        currency: 'EUR',
+        content_ids: [sku],
+        content_name: currentPackage.label || sku,
+        content_type: 'product',
+        num_items: parseInt(window.pendingOrder.quantity) || 1
+      }, { eventID: orderRef }); // eventID helps deduplicate if Conversions API is added later
+    }
     if (typeof ttq !== 'undefined') ttq.track('CompletePayment', { value: orderValue, currency: 'EUR' });
-    if (typeof gtag !== 'undefined') gtag('event', 'purchase', { value: orderValue, currency: 'EUR', transaction_id: window.pendingOrder.ref });
+    if (typeof gtag !== 'undefined') gtag('event', 'purchase', { value: orderValue, currency: 'EUR', transaction_id: orderRef });
   } catch (err) {}
 
   document.querySelector('.top-bar').style.display = 'none';
@@ -2465,14 +2509,21 @@ document.querySelectorAll('.nav a').forEach(link => {
   link.addEventListener('click', () => document.getElementById('main-nav').classList.remove('mobile-open'));
 });
 
-// Checkout tracking
+// META PIXEL — InitiateCheckout when order section is viewed
 const orderSection = document.getElementById('order');
 if (orderSection) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         try {
-          if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout');
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'InitiateCheckout', {
+              content_ids: currentPackage.sku ? [currentPackage.sku] : [],
+              value: currentPackage.price || 0,
+              currency: 'EUR',
+              num_items: currentPackage.qty || 1
+            });
+          }
           if (typeof ttq !== 'undefined') ttq.track('InitiateCheckout');
         } catch(e) {}
         observer.disconnect();
@@ -2480,6 +2531,28 @@ if (orderSection) {
     });
   }, { threshold: 0.5 });
   observer.observe(orderSection);
+}
+
+// META PIXEL — ViewContent when pricing section is viewed
+const pricingSection = document.getElementById('pricing');
+if (pricingSection) {
+  const pricingObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        try {
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'ViewContent', {
+              content_category: 'Suplementos Bem-Estar Feminino',
+              content_name: 'Pricing — Toplux',
+              currency: 'EUR'
+            });
+          }
+        } catch(e) {}
+        pricingObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  pricingObserver.observe(pricingSection);
 }
 
 // SCROLL REVEAL
@@ -2502,11 +2575,14 @@ const styleSheet = document.createElement('style');
 styleSheet.textContent = `@keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }`;
 document.head.appendChild(styleSheet);
 
-// DEFAULT EFFECT — pre-select bundle on load
+// DEFAULT EFFECT — pre-select bundle on load (without firing AddToCart)
 window.addEventListener('DOMContentLoaded', () => {
+  window.__pixelReady = false;
   selectProduct('PACK-MULHER');
   // override the auto-scroll behavior on initial select
   window.scrollTo({ top: 0, behavior: 'instant' });
+  // Enable AddToCart tracking AFTER the default pre-select is done
+  setTimeout(() => { window.__pixelReady = true; }, 800);
 });
 </script>
 
