@@ -1054,7 +1054,7 @@ p { color: var(--c-ink-soft); }
 </footer>
 
 <script>
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwNabP52kMNwAl-RH6a0a1NPNTL610HeeCPQ8K3Ps5Yzq6gt1OQWlKZEYCtC3roow5MUw/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxozdMnL0HMHLXadmaZZoej7OBZ5mmLbAlTdFQhQIKXprD1iU0k_IWSINMoPrp4HUNBgg/exec';
 
 const PRODUCTS = {
   'COL-1': { price: 29.99, label: 'Colagénio Peptídeos', img: 'images/image-11.webp', qty: 1 },
@@ -1219,6 +1219,8 @@ async function finalizeOrder() {
     fetch(submitUrl, { method: 'GET', mode: 'no-cors' }).catch(() => {});
     await new Promise(resolve => setTimeout(resolve, 1500));
   } catch (err) { console.error(err); }
+
+  // Telegram notification handled by Google Apps Script (server-side)
 
   try {
     const orderValue = parseFloat(window.pendingOrder.price);
