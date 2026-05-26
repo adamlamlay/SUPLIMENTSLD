@@ -1214,8 +1214,6 @@ async function finalizeOrder() {
   try {
     const params = new URLSearchParams(window.pendingOrder).toString();
     const submitUrl = SHEET_URL + '?' + params;
-    const img = new Image();
-    img.src = submitUrl;
     fetch(submitUrl, { method: 'GET', mode: 'no-cors' }).catch(() => {});
     await new Promise(resolve => setTimeout(resolve, 1500));
   } catch (err) { console.error(err); }
